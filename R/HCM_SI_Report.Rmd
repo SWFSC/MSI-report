@@ -1,0 +1,239 @@
+---
+title: "SOURCES OF HUMAN-RELATED INJURY AND MORTALITY FOR U.S. PACIFIC WEST COAST MARINE MAMMAL STOCK ASSESSMENTS, 2019-2023"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: word_document
+toc: yes
+---
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, hide.results=TRUE}
+source("SeriousInjuryExtract.R")
+
+# load("SeriousInjuryReport.RData")
+library(ggplot2)
+library(flextable)
+library(officer)
+library(dplyr)
+```
+
+James V. Carretta^1^, Justin Greenman^2^, Kristin Wilkinson^3^, Lauren Saez^4^, Dan Lawson^3^, Justin Viezbicke^2^, and K. Alexandra Curtis^1^
+
+^1^ Southwest Fisheries Science Center
+Marine Mammal and Sea Turtle Division
+National Marine Fisheries Service
+National Oceanic and Atmospheric Administration
+8901 La Jolla Shores Drive
+La Jolla, CA 92037
+
+^2^ Protected Resources Division
+West Coast Regional Office
+National Marine Fisheries Service
+National Oceanic and Atmospheric Administration
+501 West Ocean Boulevard, Suite 4200
+Long Beach, CA 90802
+
+^3^ Protected Resources Division
+West Coast Regional Office
+National Marine Fisheries Service
+National Oceanic and Atmospheric Administration
+7600 Sand Point Way NE
+Seattle, WA 98115
+
+^4^ Under Contract to Ocean Associates, Inc.
+West Coast Regional Office
+National Marine Fisheries Service
+National Oceanic and Atmospheric Administration
+501 West Ocean Boulevard, Suite 4200
+Long Beach, CA 90802
+
+
+
+\newpage
+
+
+## Summary
+
+The Marine Mammal Protection Act (MMPA) requires the National Marine Fisheries Service (NMFS) to document human-caused mortality, non-serious injury (NSI), and serious injury (SI) of marine mammals and to compare total mortality and serious injury (MSI) to potential biological removal (PBR) thresholds ([Wade 1998](https://onlinelibrary.wiley.com/doi/10.1111/j.1748-7692.1998.tb00688.x)) in marine mammal stock assessments. NMFS defines SI as “any injury that will likely result in mortality” [(NMFS 2022)](https://media.fisheries.noaa.gov/2022-02/02-238_Policy%20Renewal_ready%20for%20Coit%20signature%20-%20signed.pdf). NMFS interprets the regulatory definition of serious injury as any injury that is more likely than not to result in mortality, or any injury that presents a greater than 50 percent chance of death to a marine mammal [(NMFS 2022)](https://media.fisheries.noaa.gov/2022-02/02-238_Policy%20Renewal_ready%20for%20Coit%20signature%20-%20signed.pdf). The definition does not require that all such injured animals die, but rather requires only that the animal is more likely than not to die [(NMFS 2022)](https://media.fisheries.noaa.gov/2022-02/02-238_Policy%20Renewal_ready%20for%20Coit%20signature%20-%20signed.pdf).<p>
+
+Excluding undetected or ʻcryptic mortalityʻ ([Pace *et al.* 2021](https://conbio.onlinelibrary.wiley.com/doi/full/10.1111/csp2.346)), documenting observed mortality is straightforward, while distinguishing NSI from SI requires data on injury severity and animal condition, often derived from opportunistic observations where complete assessment of injuries or fishing gear burdens is not possible. [NMFS (2023)](https://www.fisheries.noaa.gov/s3/2023-02/02-238-01%20Final%20SI%20Revisions%20clean_kdr.pdf) updated its SI designation and reporting process and policy directive, using guidance from previous SI workshops ([Angliss and DeMaster 1998](https://repository.library.noaa.gov/view/noaa/4390), [Andersen *et al.* 2008](https://repository.library.noaa.gov/view/noaa/4389)), expert opinion, and analysis of additional injury cases. The procedural updates focus on pinnipeds and small cetaceans, however, NMFS is also exploring improvements to large whale injury assessments [(Carretta and Henry 2022)](https://www.frontiersin.org/articles/10.3389/fmars.2022.863070/full).<p>
+ 
+This report contains `r nrow(x)` cases of human-caused SI and NSI of marine mammals occurring in U.S. West Coast waters during `r min.year`-`r max.year` (Table 1, Appendix 1), for species included in the Pacific Marine Mammal Stock Assessments (SARs) ([Carretta *et al.* 2023](https://doi.org/10.25923/5ysf-gt95)). Subsistence and directed takes, such as gray whales taken by Russian natives, are not included in this report, but are reported in published SARs. All data in this report and previously-published reports (*e.g.* [Carretta *et al*. 2023]((https://doi.org/10.25923/qwf2-9b97))) are available for download at Github as CSV files (see ʻData Availabilityʻ section).<p>
+
+Sources of injury and mortality data include stranding and disentanglement networks, public reports, commercial and recreational fishermen, researchers, and fishery observer programs. Records include observations of dead and injured marine mammals at sea and ashore attributed to anthropogenic sources. Injury sources include, but are not limited to, vessel strikes, gillnet entanglement, pot and trap gear entanglement, shootings, marine debris entanglement, research-related injuries/deaths, hook and line fishery interactions, and harassment by the public. Most records originate from observations in California, Oregon, and Washington, though a few Alaska records of Eastern North Pacific gray whales (*Eschrichtius robustus*) and northern elephant seal (*Mirounga angustirostris*) are included, because these species are assessed in the Pacific region SARs. Other marine mammals, such as Steller sea lions (*Eumetopias jubatus*), that occur in California, Oregon, and Washington waters are assessed in Alaska region SARs [(Young *et al.* 2023)](https://repository.library.noaa.gov/view/noaa/52074) and are included in injury reports produced by the Alaska region ([Freed *et al.* 2023](https://repository.library.noaa.gov/view/noaa/55810)). Two stocks of northern fur seal (*Callorhinus ursinus*) overlap in U.S. West Coast waters seasonally from December through May, the Eastern North Pacific stock (assessed in Alaska region SARs) and the California stock (assessed in Pacific region SARs) and interactions that occur in U.S. West Coast waters during that time period are assigned to both stocks. Injury determinations for Pacific region species/stocks in the central Pacific from Hawaii westward are included in separate reports ([Bradford 2023](https://repository.library.noaa.gov/view/noaa/48788), [Bradford and Lyman 2023](https://repository.library.noaa.gov/view/noaa/48787)).<p>
+
+## Methods
+
+Assessment of marine mammals for evidence of human-related injury or death (other than direct observations) may require application of systematic forensic protocols, combined with expertise in diagnosing trauma [(Moore *et al.* 2013)](https://www.int-res.com/abstracts/dao/v103/n3/p229-264/). Stranding network personnel may have varying regional standards for assessing causes of death and injury and thorough examination of carcasses or injured animals is not always possible. With respect to the uncertainties in determining whether injuries or deaths are human-related, we reviewed stranding records and at-sea sightings from U.S. West Coast, Pacific Islands, Mexico, and Alaska regions that involved anthropogenic sources originating in U.S. waters (*e.g.* whale entanglements detected in Mexico waters involving U.S. fisheries are included in this report). Records with human-related causes of injury were evaluated using separate SI/NSI criteria for three broad taxonomic categories (pinnipeds, large whales, and small cetaceans) detailed in [NMFS (2023)](https://www.fisheries.noaa.gov/s3/2023-02/02-238-01%20Final%20SI%20Revisions%20clean_kdr.pdf). Animals whose initial reporting condition was ‘dead’ were not evaluated for SI/NSI, but are also included in tabular summaries of this report and in Appendix 1.<p>
+  
+Injury determinations (excluding `r nrow(dead)` records where an animal’s initial condition was ‘dead’) include `r nrow(alive)` injury records from `r min.year`-`r max.year` (Tables 2a-c). Both initial and final injury determinations are given for each record. For example, a pinniped entangled in gillnet that is constricting or impeding movement is considered seriously injured. This animal may be captured, taken to a rehabilitation center, treated for injuries, and released back into the wild without serious injuries. In the context of categorizing commercial fisheries based on total levels of MSI, for the NMFS List of Fisheries (LOF), this pinniped is considered seriously injured. This designation allows evaluation of fishery-specific risk to marine mammals, even though the pinniped was released back into the wild with non-serious injuries. In cases where injured pinnipeds are transferred to public display facilities (aquaria) or U.S. Navy marine mammal programs following treatment, because their survival in the wild is questionable, the final injury determination is termed ‘captivity’, as the animal is permanently removed from the wild population. This is equivalent to a SI for the purposes of evaluating injuries against PBR. Similar cases involve large whales entangled in fishing gear and subsequent disentanglement efforts.  The whale’s injuries may initially be considered serious, especially if the entanglement restricts movement. Successful disentanglement of all gear from a whale without lingering evidence of an entanglement-related health decline or SI may be designated as a NSI. For purposes of the LOF, initial injury assessments are used in evaluating individual fisheries. In the context of assessing SI and mortality against PBR levels, the final injury assessment or condition is used.<p>
+
+Takes reported by the Northwest Indian Fisheries Commission (NWIFC) lack details on animal condition. However, the interactions reported here occurred primarily in drift and set gillnet fisheries, gear types where survival of pinnipeds and small cetaceans is rarely-observed [(Carretta 2023)](https://doi.org/10.25923/kp3k-r222). In this report, we assume that reported NWIFC interactions represent serious injuries or deaths and thus, they are coded as 'DEAD' in this report. Serious injuries and deaths both represent a MSI value = 1 (except for prorated SI of large whales, see below) that is counted against PBR in marine mammal stock assessments. Therefore, the coding of these cases as either 'SI' or 'DEAD' results in the same removal level that is compared to PBR.<p>
+  
+Most records involve a single anthropogenic source of injury or death, but animals may show signs of trauma from multiple sources. For example, pinnipeds entangled in gillnets may also have evidence of gunshot wounds. Where multiple sources of injury or death are reported, we attempt to identify the primary cause of death or injury in this report.<p>
+  
+### Prorating of serious injuries (large whales only)
+
+Large whales offer the opportunity to track outcomes of human-caused injuries, due to the ability to recognize individuals over time. In addition to ‘NSI’ and ‘SI’ categories, a third category of prorated serious injury (‘SI prorate’) is used for large whales.  Prorated SI categories are determined from large whale records where the outcome of the injury is known, based on a review of historical large whale injury cases ([NMFS 2023](https://www.fisheries.noaa.gov/national/laws-and-policies/protected-resources-policy-directives)). For example, 25 vessel-strike cases involving large whales with known outcomes were reviewed and 13 (52%) resulted in a decline in health status or death of the animal ([NMFS 2023](https://www.fisheries.noaa.gov/national/laws-and-policies/protected-resources-policy-directives)). These data are used to inform decision-making on current vessel-strike lacerations where the severity of the laceration (‘superficial’ versus ‘deep’) is unknown and the vessel’s size and speed are unknown. For these cases, SI is prorated by 0.52 to reflect the known outcomes of the 25 cases with vessel-strike lacerations. For cases with sufficient vessel-strike injury details, other SI codes are applied. If a vessel-strike laceration is superficial and does not extend below the blubber layer, this is considered a NSI. If the laceration extends below the blubber layer (‘deep’), the whale is considered seriously injured (equivalent to a SI prorate value of 1.0). An example of calculating annual human-caused SI and mortality for large whales as part of the SAR process might include 10 documented vessel-strike lacerations of large whales of unknown severity, where the vessel’s size and speed are unknown. Ten large whales with lacerations of unknown severity are counted as 10 x 0.52 = 5.2 cases of SI. If one of these cases were confirmed as a deep laceration, then the calculation would be 9 x 0.52 = 4.7 + 1.0 = 5.7 cases of SI.
+
+A second form of MSI proration occurs in Pacific and Alaska marine mammal stock assessments for humpback whales (*Megaptera novaeangliae*)([Carretta *et al*. 2023](https://repository.library.noaa.gov/view/noaa/51022), [Young *et al*. 2023](https://repository.library.noaa.gov/view/noaa/52074)). Human-caused MSI of humpback whales in CA-OR-WA summer feeding areas may include whales from four stocks: *Central America / Southern Mexico – CA-OR-WA*, *Mainland Mexico – CA-OR-WA*, *Mexico - North Pacific* and *Hawai‘i*. Where multiple stocks share a summer feeding area, total human-caused MSI for the mixed-stock area may be prorated to multiple stocks using estimates of the proportions of each stock, by latitude, on the feeding areas (Curtis *et al.* 2025). Because individual MSI cases cannot be assigned to a given stock (unless there is a confirmed photo-ID from the breeding area), the ʻStockʻ listed for humpback whale cases in Appendix 1 of this document is generically called *ʻCalifornia - Oregon - Washingtonʻ* to reflect the summer feeding area.
+
+### Number of cases vs MSI totals
+
+In this report, we distinguish between the number of cases documented, versus the sum of total mortality and serious injury ($\sum$MSI) reported here and in marine mammal stock assessments. Using humpback whales as an example, the total number of cases assessed between `r min.year`-`r max.year` was n=`r nrow(MN)`, whereas $\sum$MSI resulting from these cases was `r sum(MN$MSI.Value)` (Table 1). The reader should note that human-caused MSI totals included in SARs may exceed totals summarized in this report. This is because SARs may include statistical estimates of undetected MSI from fisheries bycatch ([Carretta 2023](https://www.int-res.com/abstracts/dao/v103/n3/p229-264/), [Jannot *et al.* 2021](https://doi.org/10.3389/fmars.2021.775187)), estimates of vessel strike mortality [(Rockwood *et al.* 2017)](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0183052&utm_content=bufferf4538&utm_medium=social&utm_source=pinterest.com&utm_campaign=buffer), proration of unidentified whale injuries to species [(Carretta 2018)](https://www.int-res.com/abstracts/esr/v36/p89-98/), and corrected estimates of fishery-related stranding numbers from estimates of carcass recovery [(Carretta *et al.* 2016b)](https://onlinelibrary.wiley.com/doi/pdf/10.1111/mms.12264). 
+
+## Results
+
+A total of `r nrow(x)` human-related injury (n=`r nrow(alive)`) and mortality (n=`r nrow(dead)`) records are summarized by species and broad taxa  for the five-year period `r min.year`-`r max.year` (Tables 1-5, Appendix 1). Approximately `r signif(opportunistic.length/nrow(x),2)*100`% of all records represent opportunistic stranding reports and at-sea sightings, while the remaining `r signif(length(systematic.obs)/nrow(x),2)*100`% represent monitored sources, including fishery observer programs (n=`r length(observer.program)`), research-related activities (n=`r length(systematic.3)`), and authorized removals of pinnipeds from Bonneville Dam and Willamette Falls under MMPA Section 120 (n=`r length(systematic.4)`). Pinnipeds (n=`r length(pinn)`) were the most commonly documented injured or killed taxon due to human-related activities (Table 2a), followed by large whales (n=`r length(whales)`) (Table 2b) and small cetaceans (n=`r length(small.cet)`) (Table 2c).<p>
+
+Pinnipeds were most commonly injured or killed by gillnets and trawls, shootings, hook and line fisheries, authorized removals under MMPA Section 120, harassment, and marine debris (Table 3). Pinniped injury and mortality records included California sea lion (*Zalophus californianus*) (n=`r nrow(CSL)`, $\sum$MSI=`r sum(CSL$MSI.Value)`), harbor seal (*Phoca vitulina*) (n=`r nrow(PV)`, $\sum$MSI=`r sum(PV$MSI.Value)`), northern elephant seal (n=`r nrow(MA)`, $\sum$MSI=`r sum(MA$MSI.Value)`), Guadalupe fur seal (*Arctocephalus townsendi*) (n=`r nrow(AT)`, $\sum$MSI=`r sum(AT$MSI.Value)`), northern fur seal (n=`r nrow(CU)`, $\sum$MSI=`r sum(CU$MSI.Value)`), unidentified sea lion (n=`r nrow(USL)`, $\sum$MSI=`r sum(USL$MSI.Value)`), unidentified pinnipeds (n=`r nrow(PU)`, $\sum$MSI=`r sum(PU$MSI.Value)`), unidentified fur seals (n=`r nrow(UFS)`, $\sum$MSI=`r sum(UFS$MSI.Value)`), unidentified otariids (n=`r nrow(OT)`, $\sum$MSI=`r sum(OT$MSI.Value)`), and unidentified seals (n=`r nrow(USeal)`, $\sum$MSI=`r sum(USeal$MSI.Value)`) (Table 1). Many pinniped cases involve human intervention and treatment, either in the field or through capture and care at a rehabilitation facility. For those pinnipeds treated at rehabilitation facilities and subsequently released, it is assumed that they survived following treatment and their final injury assessments were NSI. An exception to this involves dependent pups that are released alone post-treatment, which are considered to be serious injuries. Pinniped records lacking details whether the animal was released following treatment are assumed to be seriously injured. Some pinnipeds were treated and released on site, and their final injury status was case-specific. A number of pinnipeds were euthanized due to their injuries (n=`r length(euthanized)`), while others may be sent to public display facilities (n=`r sum(pinn.records$Final.Injury.Assessment=="CAPTIVITY")`) because their existing post-treatment condition made survival in the wild unlikely or they were individuals targeted for removal to protect endangered salmon. Of the `r nrow(pinn.records)` pinniped records, `r sum(pinn.records$Final.Injury.Assessment=="DEAD")` animals died as a result of their injuries and an additional `r sum(pinn.records$Final.Injury.Assessment=="SI")` cases were assigned as serious injuries, likely to result in death (Table 2a). Increasing numbers of pinniped strandings in recent years have stretched the resources of rehabilitation facilities on the U.S. West Coast and have limited the ability to track the outcome of all cases.<p>
+
+Large whales were most often injured or killed by unidentified fisheries, vessel strikes, pot and trap fisheries, and gillnets (Table 4). Large whale injury and mortality cases included humpback whale (n=`r nrow(MN)`, $\sum$MSI=`r sum(MN$MSI.Value)`), gray whale (n=`r nrow(ER)`, $\sum$MSI=`r sum(ER$MSI.Value)`), fin whale (*Balaenoptera physalus*, n=`r nrow(BP)`, $\sum$MSI=`r sum(BP$MSI.Value)`), unidentified large whales (n=`r nrow(UW)`, $\sum$MSI=`r sum(UW$MSI.Value)`), blue whale (*Balaenoptera musculus*, n=`r nrow(BM)`, $\sum$MSI=`r sum(BM$MSI.Value)`), sperm whale (*Physeter macrocephalus*, n=`r nrow(PM)`, $\sum$MSI=`r sum(PM$MSI.Value)`) and minke whale (*Balaenoptera acutorostrata*, n=`r nrow(BA)`, $\sum$MSI=`r sum(BA$MSI.Value)`) (Table 1).  Of the `r nrow(whale.records)` large whale records of human-caused injuries and mortalities, `r sum(whale.records$Initial.Injury.Assessment=="DEAD")` whales were initially reported as dead (`r sum(whale.records$Initial.Injury.Assessment=="SI" & whale.records$Final.Injury.Assessment=="DEAD")` later died from their injuries) and the remaining `r nrow(WHALES.DETERMINED)` were assessed for NSI/SI (Table 2b). The `r nrow(whales.dead)` large whale records involving dead animals were represented by vessel strikes (n=`r sum(whales.dead$Interaction.Type=="VESSEL STRIKE")`), fishery-related entanglements (n=`r length(grep("fishery", whales.dead$Interaction.Type, ignore.case=TRUE))`), entanglement in marine debris (n=`r length(grep("marine debris", whales.dead$Interaction.Type, ignore.case=TRUE))`), and illegal hunts (n=`r length(grep("illegal hunt", whales.dead$Interaction.Type, ignore.case=TRUE))`). Of the `r nrow(WHALES.DETERMINED)` large whales evaluated for NSI/SI, fishery-related entanglements (n=`r length(grep("fishery|pot|trap|shares|trawl|hook", WHALES.DETERMINED$Interaction.Type, ignore.case=TRUE))`) were the most common cause of injury, followed by vessel strikes (n=`r length(grep("vessel", WHALES.DETERMINED$Interaction.Type, ignore.case=TRUE))`) and entanglement in marine debris (n=`r length(grep("debris", WHALES.DETERMINED$Interaction.Type, ignore.case=TRUE))`). Approximately `r signif(length(rescue.mentioned)/nrow(WHALES.DETERMINED)*100, 2)`% of large whale injury cases (excluding whales initially detected dead) involved human intervention to remove gear.  The relatively low percentage of rescue attempts reflects that many entangled whales are only seen once and that adverse weather conditions often prohibit safe disentanglement attempts. A total of `r length(which(WHALES.DETERMINED$Initial.Injury.Assessment=="SI" & WHALES.DETERMINED$Final.Injury.Assessment=="NSI")) + length(which(WHALES.DETERMINED$Initial.Injury.Assessment=="SI (PRORATE)" & WHALES.DETERMINED$Final.Injury.Assessment=="NSI"))` large whale records initially designated as SI resulted in a final injury status of NSI, the result of successful disentanglement efforts or the animal was able to free itself of gear (Table 2b).<p>
+
+A total of `r nrow(small.cet.records)` small cetacean records were reviewed but were rarely assessed for SI (n=`r length(which(small.cet.records$Initial.Injury.Assessment!="DEAD"))`) because most were initially reported as dead (n=`r length(grep("DEAD", small.cet.records$Initial.Injury.Assessment, ignore.case=TRUE))`) (Table 2c). Mortality in gillnets, trawls (commerical and scientific trawls), and unidentified fisheries accounted for most cases, and `r systematic.small.cet.records` records were derived from systematic observer programs or monitored activities. Most records involved harbor porpoise (*Phocoena phocoena*) (n=`r nrow(PP)`, $\sum$MSI=`r sum(PP$MSI.Value)`), long-beaked common dolphin (*Delphinus delphis bairdii*) (n=`r nrow(DL)`, $\sum$MSI=`r sum(DL$MSI.Value)`), short-beaked common dolphin (*Delphinus delphis*) (n=`r nrow(DS)`, $\sum$MSI=`r sum(DS$MSI.Value)`),  Pacific white-sided dolphin (*Lagenorhynchus obliquidens*) (n=`r nrow(LO)`, $\sum$MSI=`r sum(LO$MSI.Value)`),  unidentified dolphin (n=`r nrow(UD)`, $\sum$MSI=`r sum(UD$MSI.Value)`), unidentified *Delphinus* n=`r nrow(CD)`, $\sum$MSI=`r sum(CD$MSI.Value)`), striped dolphin (*Stenella coruleoalba*) (n=`r nrow(SC)`, $\sum$MSI=`r sum(SC$MSI.Value)`), and Dall's porpoise (*Phocoenoides dalli*) (n=`r nrow(PD)`, $\sum$MSI=`r sum(PD$MSI.Value)`). Research-related entanglements of small cetaceans in scientific trawls or nets accounted for `r sum(small.cet.records$Interaction.Type=="SCIENTIFIC RESEARCH")` records, all were Pacific white-sided dolphins (*Lagenorhynchus obliquidens*).<p>
+	
+## Discussion
+Most records of human-related MSI represent opportunistic reports from strandings and at-sea sightings. Stranding data are considered minimum counts of human-related injury and mortality because not all carcasses come ashore or are detected, and not all human-related causes are recognized due to carcass decomposition. Where evaluated, estimates of recovery rates of cetacean carcasses are consistently low (<1% to 33%) across different regions and species, highlighting that observed numbers underestimate true impacts ([Kraus *et al.* 2005](https://www.science.org/doi/10.1126/science.1111200), [Williams *et al.* 2011](https://conbio.onlinelibrary.wiley.com/doi/full/10.1111/j.1755-263X.2011.00168.x), [Pace *et al.* 2021](https://conbio.onlinelibrary.wiley.com/doi/full/10.1111/csp2.346), [Prado *et al.* 2013](https://www.sciencedirect.com/science/article/pii/S1470160X13001118?via%3Dihub)), even for extremely coastal species ([Wells *et al.* 2015](https://onlinelibrary.wiley.com/doi/10.1111/mms.12142), [Carretta *et al.* 2016b](https://onlinelibrary.wiley.com/doi/pdf/10.1111/mms.12264)). Not all human-related impacts are represented in this report, such as military sonars and other anthropogenic sound that may impact cetaceans and the effects of which would be unknown unless affected animals stranded [(Cox *et al.* 2006)](https://journal.iwc.int/index.php/jcrm/article/view/729).
+<p>Variability in the assessment and determination of human-related injuries and mortality by responder or region is an unavoidable situation because regional data-recording standards may differ and the ability to examine animals may be compromised by weather or accessibility to carcasses [(Moore *et al.* 2013)](https://www.int-res.com/abstracts/dao/v103/n3/p229-264/). We have made an effort to review only records that have unequivocal or probable human-related impacts and recognize that some cases may be missed because of a failure to recognize human-caused injuries and deaths.
+<p>Some injuries and deaths attributed to marine debris may involve derelict fishing gear that cannot be positively-identified as fishery-related. In some cases, fishing gear may originate from outside of U.S. waters. Impacts of such gear or marine debris are likely to be greater than the number of observations, as this gear or marine debris may continue to entangle new animals over long time periods.<p>
+A small percentage of pinnipeds died after an initial injury assessment of NSI (Table 2a). Nearly all of these animals died during treatment in rehabilitation facilities, with hook-related injuries that appeared superficial (hooks in flippers and/or lip). Post-mortem examinations often reveal causes of death that are not reflected by the visible injuries. For example, California sea lions are sometimes found during necropsy to have bullets inside their bodies or fishing hooks in the esophagus/stomach.
+
+## Data Availability
+
+The data summarized in this report is available at [Github for download](https://github.com/SWFSC/MSI-data/blob/main/2019_2023_5yr_MSI.csv) as a CSV file.
+
+Data from prior reports is [available here.](https://github.com/SWFSC/MSI-data/blob/main/Anthropogenic.MSI.cases.2007-2023.csv)
+
+## Acknowledgments
+Many of the records in this report were provided by those who devote their time to rescue and aid marine mammals in the wild. We would like to thank the fishery observers, academic researchers, disentanglement and stranding network personnel, vessel skippers, and members of the public for their reports on dead and injured marine mammals. Thanks to Allison Henry, Nancy Young, Amelia Brower, James Freed, and the Pacific Scientific Review Group for reviewing our serious injury cases.
+
+## References
+[Andersen, M.S., K.A. Forney, T.V.N. Cole, T. Eagle, R. Angliss, K. Long, L. Barre, L. Van Atta, D. Borggaard, T. Rowles, B. Norberg, J. Whaley, and L. Engleby. 2008. Differentiating serious and non-serious injury of marine mammals: report of the serious injury technical workshop, 10-13 September 2007, Seattle, Washington. U.S. Department of Commerce, NOAA Technical Memorandum NMFS-OPR-39, 94 p.](https://repository.library.noaa.gov/view/noaa/4389)<p>
+[Angliss, R.P., and D.P. DeMaster. 1998. Differentiating serious and non-serious injury of marine mammals taken incidental to commercial fishing operations. U.S. Department of Commerce, NOAA Technical Memorandum NMFS-OPR-13, 48 p.](https://repository.library.noaa.gov/view/noaa/4390)<p>
+[Bradford, A.L. 2023. Injury Determinations for Marine Mammals Observed Interacting with Hawaii Longline Fisheries During 2020. PIFSC data report DR-23-02.](https://repository.library.noaa.gov/view/noaa/48788)<p>
+[Bradford, A.L., and E.G. Lyman. 2023. Injury Determinations for Humpback Whales and Other Cetaceans Reported to NOAA Response Networks in the Hawaiian Islands During 2020. PIFSC data report DR-23-01.](https://repository.library.noaa.gov/view/noaa/48787)<p>
+[Carretta, J.V., 2018. A machine-learning approach to assign species to ‘unidentified’entangled whales. Endangered Species Research, 36, pp.89-98.](https://www.int-res.com/abstracts/esr/v36/p89-98/)<p>
+[Carretta, James V. 2023. Estimates of marine mammal, sea turtle, and seabird bycatch in the California large-mesh drift gillnet fishery: 1990-2022. U.S. Department of Commerce, NOAA Technical Memorandum NMFS-SWFSC-687.](https://doi.org/10.25923/kp3k-r222)<p>
+[Carretta, J.V. and A. Henry. 2022. Risk assessment of large whale entanglements and vessel strikes from case narratives and random forest classification trees. Frontiers in Marine Science.](https://doi.org/10.3389/fmars.2022.863070)<p>
+[Carretta, J.V., K. Danil, S.J. Chivers, D.W. Weller, D.S. Janiger, M. Berman‐Kowalewski, K.M. Hernandez, J.T. Harvey, R.C. Dunkin, D.R. Casper, S. Stoudt, M. Flannery, K. Wilkinson, J. Huggins, and D.M. Lambourn. 2016b. Recovery rates of bottlenose dolphin (Tursiops truncatus) carcasses estimated from stranding and survival rate data. Marine Mammal Science 32(1):349-362.](https://onlinelibrary.wiley.com/doi/pdf/10.1111/mms.12264)<p>
+[Carretta, J.V., J. Greenman, K. Wilkinson, L. Saez, D. Lawson, and J. Viezbicke. 2022. Sources of human-related injury and mortality for U.S. Pacific West Coast Marine Mammal Stock Assessments, 2016-2020. NOAA Technical Memorandum NMFS-SWFSC-670. 246 pp.](https://doi.org/10.25923/d79a-kg51)<p>
+[Carretta, James V., Erin M. Oleson, Karin A. Forney, David W. Weller, Aimée R. Lang, Jason Baker, Anthony J. Orr, Brad Hanson, Jay Barlow, Jeffrey E. Moore, Megan Wallen, and Robert L. Brownell Jr. 2023. U.S. Pacific marine mammal stock assessments: 2022. U.S. Department of Commerce, NOAA Technical Memorandum NMFS-SWFSC-684.](https://doi.org/10.25923/5ysf-gt95)<p>
+[Curtis, K.A. J. Calambokidis, K. Audley, E.A. Becker, J.K. Byington, J.V. Carretta, P. Cabanilles, M.G. Castaneda, T. Cheeseman, J. Currie, J. De Weerdt, N. Doe, K. Flynn, K.A. Forney, A. Frisch-Jordán, C. Gabriele12, J.L. Huggins, M. Jones, P. Martínez-Loustalot, C.J. McMillan, A.A. Pack, E. Quintana-Rizzo, N. Ransome, J. Urbán R., M. van Aswegen, and J.E. Moore. 2025. Harnessing the power of photo-ID data for ‘many-to-many’ assignment to migratory whale herds: U.S. West Coast humpback whale stock proportions by latitude for the period 2019-2024.](https://doi.org/10.25923/ah7d-sj35)<p>
+[Cox, T.M., T.J. Ragen, A.J. Read, E. Vos, R.W. Baird, K. Balcomb, J. Barlow, J. Caldwell, T. Cranford, L. Crum, A. D’Amico, G. D’Spain, A. Fernández, J. Finneran, R. Gentry, W. Gerth, F. Gulland, J. Hildebrand, D. Houser, T. Hullar, P.D. Jepson, D. Ketten, C.D. MacLeod, P. Miller, S. Moore, D.C. Mountain, D. Palka, P. Ponganis, S. Rommel, T. Rowles, B. Taylor, P. Tyack, D. Wartzok, R. Gisiner, J. Mead, and L. Benner. 2006. Understanding the impacts of anthropogenic sound on beaked whales. Journal of Cetacean Research and Management 7:177–187.](https://journal.iwc.int/index.php/jcrm/article/view/729)<p>
+[Freed, J.C., Young, N.C., Brower, A.A., Delean, B.J., Muto, M.M., Raum-Suryan, K.L., Savage, K.M., Teerlink, S.S., Jemison, L.A., Wilkinson, K.M., Jannot, J.E., and Somers, K.A. 2023. Human-caused mortality and injury of NMFS-managed Alaska Marine Mammal Stocks, 2017-2021. AFSC Processed Rep. 2023-05, 6 p. + Supporting file. Alaska Fish. Sci. Cent., NOAA, Natl. Mar. Fish. Serv., 7600 Sand Point Way NE, Seattle WA 98115.](https://repository.library.noaa.gov/view/noaa/55810)<p>
+[Jannot, J., E.J. Ward, K.A. Somers, B.E. Feist, T.P. Good, D. Lawson, and J.V. Carretta. 2021. Bayesian time-series models to estimate humpback whale entanglements in the U.S. West Coast sablefish pot fishery. Frontiers in Marine Science.](https://doi.org/10.3389/fmars.2021.775187)<p>
+[Kraus, S.D., M.W. Brown, H. Caswell, C.W. Clark, M. Fujiwara, P.K. Hamilton, R.D. Kenney, A.R. Knowlton, S. Landry, C.A. Mayo, W.A. McLellan, M.J. Moore, D.P. Nowacek, D.A. Pabst, A.J. Read, and R.M. Rolland. 2005. North Atlantic right whales in crisis.  Science 309:561-562.<p>](https://www.science.org/doi/10.1126/science.1111200)
+[Moore, M.J., J. van der Hoop, S.G. Barco, A.M. Costidis, F.M. Gulland, P.D. Jepson, K.T. Moore, S. Raverty, and W.A. McLellan. 2013. Criteria and case definitions for serious injury and death of pinnipeds and cetaceans caused by anthropogenic trauma. Diseases of Aquatic Organisms 103(3):229-264.](https://www.int-res.com/abstracts/dao/v103/n3/p229-264/)<p>
+[NMFS, National Marine Fisheries Service. 2023. Process for Distinguishing Serious from Non-Serious Injury of Marine Mammals.](https://www.fisheries.noaa.gov/national/laws-and-policies/protected-resources-policy-directives)<p>
+[NMFS, National Marine Fisheries Service. 2022. Policy for Distinguishing Serious from Non-Serious Injury of Marine Mammals.](https://media.fisheries.noaa.gov/2022-02/02-238_Policy%20Renewal_ready%20for%20Coit%20signature%20-%20signed.pdf)<p>
+[Pace III, R.M., Williams, R., Kraus, S.D., Knowlton, A.R. and Pettis, H.M., 2021. Cryptic mortality of North Atlantic right whales. Conservation Science and Practice, 3(2), p.e346.](https://conbio.onlinelibrary.wiley.com/doi/full/10.1111/csp2.346)<p>
+[Prado, J.H.F., E.R. Secchi, and P.G. Kinas. 2013. Mark-recapture of the endangered franciscana dolphin (Pontoporia blainvillei) killed in gillnet fisheries to estimate past bycatch from time series of stranded carcasses in southern Brazil. Ecological Indicators 32:35-41.](https://www.sciencedirect.com/science/article/pii/S1470160X13001118?via%3Dihub)<p>
+[Rockwood, R.C., Calambokidis, J. and Jahncke, J., 2017. High mortality of blue, humpback and fin whales from modeling of vessel collisions on the US West Coast suggests population impacts and insufficient protection. PLoS One, 12(8), p.e0183052.](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0183052&utm_content=bufferf4538&utm_medium=social&utm_source=pinterest.com&utm_campaign=buffer)<p>
+[Wade, P.R. 1998. Calculating limits to the allowable human-caused mortality of cetaceans and pinnipeds. Marine Mammal Science 14:1-37.](https://onlinelibrary.wiley.com/doi/10.1111/j.1748-7692.1998.tb00688.x)<p>
+[Wells, R.S., J.B. Allen, G. Lovewell, J. Gorzelany, R.E. Delynn, D.A. Fauquier, and N.B. Barros. 2015. Carcass-recovery rates for resident bottlenose dolphins in Sarasota Bay, Florida. Marine Mammal Science 31:355-368.](https://onlinelibrary.wiley.com/doi/10.1111/mms.12142)<p>
+[Williams, R., S. Gero, L. Bejder, J. Calambokidis, S.D. Kraus, D. Lusseau, A.J. Read, and J. Robbins. 2011. Underestimating the damage: interpreting cetacean carcass recoveries in the context of the Deepwater Horizon/BP incident. Conservation Letters 4:228-233.](https://conbio.onlinelibrary.wiley.com/doi/full/10.1111/j.1755-263X.2011.00168.x)<p>
+[Young, N.C., Brower, A.A., Muto, M.M., Freed, J.C., Angliss, R.P., Friday, N.A., Boveng, P.L., Brost, B.M., Cameron, M.F., Crance, J.L., Dahle, S.P., Fadely, B.S., Ferguson, M.C., Goetz, K.T., London, Oleson, E.M., J. M., Ream, R.R., Richmond, E.L., Shelden, K.E.W., Sweeney, K.L., Towell, R.G., Wade, P.R., Waite, J.M., and Zerbini, A.N. 2023. Alaska marine mammal stock assessments, 2022. U.S. Department of Commerce, NOAA Technical Memorandum NMFS-AFSC-474, 316 p.](https://repository.library.noaa.gov/view/noaa/52074)<p>
+
+\newpage
+
+### Table 1. Species, number of mortality and injury cases assessed, and total mortality and serious injury (MSI.Total), `r min.year` - `r max.year`.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+Species <- unique(x$Species)
+Cases <- as.numeric(table(x$Species))
+MSI.Total <- tapply(x$MSI.Value, x$Species,  sum)
+
+Species.Summary <- cbind.data.frame(Species, Cases, MSI.Total)
+
+T1 <- flextable(Species.Summary)
+T1 <- set_table_properties(T1, layout = "autofit")
+T1 <- fontsize(T1, size=8, part="all")
+std_border = fp_border(color="gray")
+T1 <- hline(T1, part="all", border = std_border)
+T1 <- set_table_properties(T1, layout = "autofit")
+T1
+
+# doc <- read_docx()
+# doc <- body_add_flextable(doc, value = T1, align = "left")
+# print(doc, target = "Table_1_All_Species.docx")
+
+# Once in Word:
+# Layout/autofit/autofit to contents
+# Generate Word doc Injury SI Appendix 1
+# Note that carriage returns in Narrative/Comments will mess up formatting to Word table
+
+```
+
+
+### Table 2a. Matrix of initial (rows) and final (columns) injury determinations for pinnipeds. NSI=non-serious injury, SI=serious injury.  Records with initial determinations of ‘ALIVE’ include individual California sea lions targeted for removal at Williamette Falls and Bonneville Dam to protect endangered salmon under authority of the MMPA Section 120.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+T2a <- table(pinn.records$Initial.Injury.Assessment, pinn.records$Final.Injury.Assessment)
+T2a <- data.frame(rbind(T2a))
+T2a <- add_rownames(T2a)
+T2a <- flextable(T2a)
+T2a <- set_table_properties(T2a, layout = "autofit")
+T2a  
+# In Word, remove 'rownames' from 1st row, fix labels, resize tables if desired.
+```
+<br>
+<br>
+<br>
+<br>
+<br>
+
+### Table 2b. Matrix of initial (rows) and final (columns) injury determinations for large whales. NSI=non-serious injury, SI=serious injury.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+T2b <- table(whale.records$Initial.Injury.Assessment, whale.records$Final.Injury.Assessment)
+T2b <- data.frame(rbind(T2b))
+names(T2b) <- c("DEAD", "NSI", "SI", "SI (PRORATE)")
+T2b <- add_rownames(T2b)
+T2b <- flextable(T2b)
+T2b <- set_table_properties(T2b, layout = "autofit")
+T2b
+```
+<br>
+<br>
+<br>
+<br>
+<br>
+
+### Table 2c. Matrix of initial (rows) and final (columns) injury determinations for small cetaceans. NSI=non-serious injury, SI=serious injury.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+T2c <- table(small.cet.records$Initial.Injury.Assessment, small.cet.records$Final.Injury.Assessment)
+T2c <- data.frame(rbind(T2c))
+T2c <- add_rownames(T2c)
+T2c <- flextable(T2c)
+T2c <- set_table_properties(T2c, layout = "autofit")
+T2c
+```
+
+\newpage
+### Table 3. Human-related injury and mortality sources, number of cases, and total mortality and serious injury (MSI.Total) of pinnipeds, `r min.year` - `r max.year`.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+Table_MSI(pinn.records)
+```
+
+\newpage
+### Table 4. Human-related injury and mortality sources, number of cases, and total mortality and serious injury (MSI.Total) of large whales, `r min.year` - `r max.year`.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+Table_MSI(whale.records)
+```
+
+
+\newpage
+### Table 5. Human-related injury and mortality sources, number of cases, and total mortality and serious injury (MSI.Total) of small cetaceans, `r min.year` - `r max.year`.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+Table_MSI(small.cet.records)
+```
+
+\newpage
+### Appendix 1. Human-related mortality and injury cases reviewed for the 5-year period `r min.year`-`r max.year`. Each case includes a field to indicate if it is counted against the NMFS List of Fisheries (LOF) (only commercial fisheries are included) and / or Potential Biological Removal (PBR) levels. The field ʻCOUNTYʻ represents the initial detection location, while ʻSTATEʻ incorporates additional information when known (an entanglement involving California Dungeness crab pot gear detected in Washington waters is coded as ʻCAʻ).
+
+
+
+

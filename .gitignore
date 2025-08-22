@@ -1,2 +1,7 @@
-# Files/paths/patterns for git to ignore 
 # https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
+# History files
+.Rapp.history
+/R/.Rhistory
+# Word files
+/R/*.docx
+/R/*.tmp

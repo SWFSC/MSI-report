@@ -1,0 +1,10 @@
+* SeriousInjuryExtract is a function that takes a working directory, year range
+* silence NA read warnings in read_excel for SeriousInjuryPackage
+* improve automation of formatting
+* poetntially no longer include Table 1 (or other tables?) - see reports from other regions
+* fix nesting for report headers so tables are not within references
+* reorg the creation of many other products from this code
+* R package?
+* download data from web? Or require repo to be installed locally so can update it
+
+* explore CSV as mother file format for MSI-data repo - is character formatting too much of a problem? how easy to bring into excel for editing and then convert back?

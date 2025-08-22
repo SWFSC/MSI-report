@@ -1,6 +1,8 @@
-# SWFSC-Template
+# MSI-report
 
-The README provides a description of the repository. The README file will vary greatly depending on the repo contents. 
+## Description
+
+This repository houses scripts used for automated MSI report production. It relies on data in the [SWFSC/MSI-data](https://github.com/SWFSC/MSI-data) repository.  
 
 ## License
 
