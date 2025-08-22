@@ -1,10 +1,25 @@
 * SeriousInjuryExtract is a function that takes a working directory, year range
 * silence NA read warnings in read_excel for SeriousInjuryPackage
-* improve automation of formatting
+* can table-writing functionality be further packaged into functions so easier to adapt and read?
+* improve automation of formatting - css file available for TMs that can add in?
 * poetntially no longer include Table 1 (or other tables?) - see reports from other regions
 * fix nesting for report headers so tables are not within references
 * reorg the creation of many other products from this code
 * R package?
 * download data from web? Or require repo to be installed locally so can update it
 
-* explore CSV as mother file format for MSI-data repo - is character formatting too much of a problem? how easy to bring into excel for editing and then convert back?
+
+* future daddy file format and location? shift from excel stored in MSI-data? 
+  Considerations:
+   - Read access needed for collaborators across NOAA
+   - Data validation is built into Excel file (and appears to import well to a Google Sheets file too)
+   - versioning (ideally with changes clearly shown)
+     ~ details of versions not available when replace xlsx in GH or GDrive. 
+     ~ CSV has character conversion issues and is not as easy to edit
+     ~ Edits also relatively easy via version history to see IFF made directly to file on GDrive (true for XLSX and Sheets)
+   - Excel that is downloaded and reuploaded allows data re-sorting without saving, but this can be overcome 
+    if working directly on GDrive by reverting to a previous version, as long as no edits made
+  Questions:
+   - I forget if GHE is gold standard archival (i.e., backed up somewhere routinely through no action on our part)?
+   - Are resolution and levels of sharing on Google Shared Drive amenable to need to share single file for read access with NOAA collabs? 
+     Seems only can control permissions at Drive level?
