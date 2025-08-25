@@ -1,5 +1,6 @@
 * SeriousInjuryExtract is a function that takes a working directory, year range
 * silence NA read warnings in read_excel for SeriousInjuryPackage
+* remove appendix 1? add note in data availability pointing to supp matierial, provide csv with pdf to IR
 * can table-writing functionality be further packaged into functions so easier to adapt and read?
 * improve automation of formatting - css file available for TMs that can add in?
 * poetntially no longer include Table 1 (or other tables?) - see reports from other regions
