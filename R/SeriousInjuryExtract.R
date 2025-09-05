@@ -2,7 +2,7 @@
 # and to add LOF / PBR fields to serious injury records, based on interaction characteristics
 # Jim Carretta 02-25-2025
 # Updated to fully-categorize all systematic (observer program, research-related, authorized removal) records as such
-# Input file renamed ""Anthropogenic_Mortality_Serious_Injury_Carretta.xlsx"" in Oct 2021
+# Input file renamed "HCMSI_Records_SWFSC_Main.xlsx" in Sep 2025
   
 	library(ggplot2)
 	library(flextable)
@@ -11,7 +11,8 @@
 	
 	rm(list=ls())
 	setwd("C:/Users/alex.curtis/Data/MSI")
-	data = read_excel("../GitHub/MSI-data/Anthropogenic_Mortality_Serious_Injury_Carretta.xlsx")
+	data = read_excel("../GitHub/MSI-data/data/HCMSI_Records_SWFSC_Main.xlsx")
+	data = data[,-1]   # Drop SWFSC Record ID column
 	
 #  Years to include in annual MSI report
 	min.year = 2019

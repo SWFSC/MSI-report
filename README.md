@@ -2,7 +2,7 @@
 
 ## Description
 
-This repository houses scripts used for automated MSI report production. It relies on data in the [SWFSC/MSI-data](https://github.com/SWFSC/MSI-data) repository.  
+This repository houses scripts used for automated MSI report production. It uses HCMSI_Records_SWFSC_Main.xlsx in the [SWFSC/MSI-data](https://github.com/SWFSC/MSI-data) repository.  
 
 ## Disclaimer
 
