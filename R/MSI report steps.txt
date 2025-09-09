@@ -23,8 +23,9 @@ Word doc edits:
   - finally convert to PDF (this will take a while) - if get stuck, try printing to PDF?
 * to main doc
   - remove TOC because nesting awry and not necessary (or insert page break before Table of Contents (TOC))
-  - move author block up to below title from under TOC, delete date, format title page
+  - move author block up to below title from under TOC, delete/update date, format title page
   - check for rows with zero counts in all Tables and eliminate (ideally by editing HCM_SI_Report.Rmd)
+  - check for "n=0" in text summaries and eliminate where appropriate.
   - manually remove "rowname" from tables 2a-c
   - Table 3-5: fix format by right-clicking on arrow thingy and selecting autofit to contents
   - add thousands-place commas if missing
