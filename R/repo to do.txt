@@ -1,4 +1,4 @@
-* SeriousInjuryExtract is a function that takes a working directory, year range
+* SeriousInjuryExtract as a function that takes a working directory, year range
 * silence NA read warnings in read_excel for SeriousInjuryPackage
 * remove appendix 1? add note in data availability pointing to supp matierial, provide csv with pdf to IR
 * can table-writing functionality be further packaged into functions so easier to adapt and read?
@@ -8,9 +8,10 @@
 * reorg the creation of many other products from this code
 * R package?
 * download data from web? Or require repo to be installed locally so can update it
+* convert to Quarto?
 
 
-* future daddy file format and location? shift from excel stored in MSI-data? 
+* future daddy file format and location? 
   Considerations:
    - Read access needed for collaborators across NOAA
    - Data validation is built into Excel file (and appears to import well to a Google Sheets file too)
