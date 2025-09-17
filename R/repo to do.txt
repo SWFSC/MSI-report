@@ -9,9 +9,12 @@
 * R package?
 * download data from web? Or require repo to be installed locally so can update it
 * convert to Quarto?
+* gt package for tables?
+* set up as releases: SRG draft for review, final annual report
+* pulish html to POSIT Connect for limited (SRG) review?
 
 
-* future daddy file format and location? 
+* future main file format and location? 
   Considerations:
    - Read access needed for collaborators across NOAA
    - Data validation is built into Excel file (and appears to import well to a Google Sheets file too)
@@ -25,3 +28,7 @@
    - I forget if GHE is gold standard archival (i.e., backed up somewhere routinely through no action on our part)?
    - Are resolution and levels of sharing on Google Shared Drive amenable to need to share single file for read access with NOAA collabs? 
      Seems only can control permissions at Drive level?
+
+Resources:
+* PSAW workshop on Quarto for SARs - slides:
+https://docs.google.com/presentation/d/13ntRff7AxlzAwqck7RE99-W205Z0F6CGwOMdMG5eMR0/edit?slide=id.g37cadd65bda_0_27#slide=id.g37cadd65bda_0_27
