@@ -1,9 +1,6 @@
 MSI report steps
 
-why excel for mother file in MSI-data?
-* viewability as xslx file in Excel allows word wrapping - timesaver when reviewing many records
-
-(1) Update in SeriousInjuryExtract.r, then run:
+(1) Update the following in SeriousInjuryExtract.r, then run:
 * working directory
 * data directory
 * year range
@@ -12,7 +9,7 @@ why excel for mother file in MSI-data?
 
 (3) Update in HCM_SI_Report.Rmd, then knit:
 * check years are correct
-* update Data Availability links
+* update Data Availability link for 5-year data
 
 Word doc edits:
 * to appendix doc:
@@ -36,16 +33,18 @@ Word doc edits:
   - finally convert to PDF
 
 Clean up
-* copy 5-year and all-time CSVs to MSI-data repo, commit, and push
-
+* copy 5-year and all-time CSVs to correct repo/folder, commit, and push
 
 
 Finalizing 2019-2023:
-* update Lauren's contact info?
+* check links (e.g. fix in Summary)
+* update data availability links
+* use "data from previous years" instead of "data from other reports", and link to folder instead of file, so can replace the all-year file each year
+* fix nesting for report headers - add Tables header so tables are not within references
+* clean up repo
+* update README
+* make public, release version with publication
 
-508:
-
-fix conversion issue to pdf for Appendix 1
 
 Doc properties:
 Sources of human-related injury and mortality for U.S. Pacific West Coast marine mammal stock assessments, 2019-2023
@@ -53,7 +52,11 @@ James V. Carretta; Justin Greenman; Kristin Wilkinson; Lauren Saez; Dan Lawson; 
 NOAA Technical Memorandum NMFS-SWFSC-XXX
 Key words: 
 Southwest Fisheries Science Center
+West Coast
 Entanglement
 Injury
-Interactions
-Mortalities
+Interaction
+Mortality
+Marine Mammal
+Stock Assessment
+

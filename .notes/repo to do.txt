@@ -1,22 +1,24 @@
+* change title: "U.S. West Coast Pacific" 
 * SeriousInjuryExtract as a function that takes a working directory, year range
 * silence NA read warnings in read_excel for SeriousInjuryPackage
-* remove appendix 1? add note in data availability pointing to supp matierial, provide csv with pdf to IR
+* remove appendix 1? add note in data availability pointing to supp material, provide csv with pdf to IR? Karin wants to keep A1
 * can table-writing functionality be further packaged into functions so easier to adapt and read?
 * improve automation of formatting - css file available for TMs that can add in?
-* poetntially no longer include Table 1 (or other tables?) - see reports from other regions
-* fix nesting for report headers so tables are not within references
+* potentially no longer include Table 1 (or other tables?) - see reports from other regions
 * reorg the creation of many other products from this code
-* R package?
 * download data from web? Or require repo to be installed locally so can update it
 * convert to Quarto?
 * gt package for tables?
 * set up as releases: SRG draft for review, final annual report
 * pulish html to POSIT Connect for limited (SRG) review?
+* fix conversion issue to pdf for Appendix 1?
 
 
 * future main file format and location? 
   Considerations:
-   - Read access needed for collaborators across NOAA
+   - ease of reading/editing -> Sheets or Excel
+   - system that encourages keeping it updated among frequent users
+   - Read access needed for collaborators across NOAA, some without GH accounts
    - Data validation is built into Excel file (and appears to import well to a Google Sheets file too)
    - versioning (ideally with changes clearly shown)
      ~ details of versions not available when replace xlsx in GH or GDrive. 
@@ -24,10 +26,9 @@
      ~ Edits also relatively easy via version history to see IFF made directly to file on GDrive (true for XLSX and Sheets)
    - Excel that is downloaded and reuploaded allows data re-sorting without saving, but this can be overcome 
     if working directly on GDrive by reverting to a previous version, as long as no edits made
-  Questions:
-   - I forget if GHE is gold standard archival (i.e., backed up somewhere routinely through no action on our part)?
-   - Are resolution and levels of sharing on Google Shared Drive amenable to need to share single file for read access with NOAA collabs? 
-     Seems only can control permissions at Drive level?
+   - GHE is gold standard backed up (i.e., backed up somewhere routinely through no action on our part), but not archival FWIW
+   - Resolution and levels of sharing on Google Shared Drive not amenable to need to share single file for read access with NOAA collabs. Could request separate shared drive for that file, and add shortcut in CMAP shared drive? Or make it a CMAP shared drive file and then copy over to somewhere public when ready to share. 
+   - advantage of keeping internal is allows keeping spatial info and stripping only for public share version
 
 Resources:
 * PSAW workshop on Quarto for SARs - slides:
