@@ -1,3 +1,6 @@
+* separate data review file that flags errors
+* carry over data edits for all years to XLS
+* add back in CSV with data for previous years
 * change title: "U.S. West Coast Pacific" 
 * SeriousInjuryExtract as a function that takes a working directory, year range
 * silence NA read warnings in read_excel for SeriousInjuryPackage
@@ -10,7 +13,7 @@
 * convert to Quarto?
 * gt package for tables?
 * set up as releases: SRG draft for review, final annual report
-* pulish html to POSIT Connect for limited (SRG) review?
+* publish html to POSIT Connect for limited (SRG) review?
 * fix conversion issue to pdf for Appendix 1?
 
 

@@ -15,7 +15,7 @@ library(officer)
 library(dplyr)
 ```
 
-James V. Carretta^1^, Justin Greenman^2^, Kristin Wilkinson^3^, Lauren Saez^4^, Dan Lawson^3^, Justin Viezbicke^2^, and K. Alexandra Curtis^1^
+James V. Carretta^1,+^, Justin Greenman^2^, Kristin Wilkinson^3^, Lauren Saez^4^, Dan Lawson^3^, Justin Viezbicke^2^, and K. Alexandra Curtis^1^
 
 ^1^ Southwest Fisheries Science Center
 Marine Mammal and Sea Turtle Division
@@ -45,6 +45,7 @@ National Oceanic and Atmospheric Administration
 501 West Ocean Boulevard, Suite 4200
 Long Beach, CA 90802
 
+^+^ Retired
 
 
 \newpage
@@ -56,7 +57,7 @@ The Marine Mammal Protection Act (MMPA) requires the National Marine Fisheries S
 
 Excluding undetected or ʻcryptic mortalityʻ ([Pace *et al.* 2021](https://conbio.onlinelibrary.wiley.com/doi/full/10.1111/csp2.346)), documenting observed mortality is straightforward, while distinguishing NSI from SI requires data on injury severity and animal condition, often derived from opportunistic observations where complete assessment of injuries or fishing gear burdens is not possible. [NMFS (2023)](https://www.fisheries.noaa.gov/s3/2023-02/02-238-01%20Final%20SI%20Revisions%20clean_kdr.pdf) updated its SI designation and reporting process and policy directive, using guidance from previous SI workshops ([Angliss and DeMaster 1998](https://repository.library.noaa.gov/view/noaa/4390), [Andersen *et al.* 2008](https://repository.library.noaa.gov/view/noaa/4389)), expert opinion, and analysis of additional injury cases. The procedural updates focus on pinnipeds and small cetaceans, however, NMFS is also exploring improvements to large whale injury assessments [(Carretta and Henry 2022)](https://www.frontiersin.org/articles/10.3389/fmars.2022.863070/full).<p>
  
-This report contains `r nrow(x)` cases of human-caused SI and NSI of marine mammals occurring in U.S. West Coast waters during `r min.year`-`r max.year` (Table 1, Appendix 1), for species included in the Pacific Marine Mammal Stock Assessments (SARs) ([Carretta *et al.* 2023](https://doi.org/10.25923/5ysf-gt95)). Subsistence and directed takes, such as gray whales taken by Russian natives, are not included in this report, but are reported in published SARs. All data in this report and previously-published reports (*e.g.* [Carretta *et al*. 2023]((https://doi.org/10.25923/qwf2-9b97))) are available for download at GitHub as CSV files (see ʻData Availabilityʻ section).<p>
+This report contains `r nrow(x)` cases of human-caused SI and NSI of marine mammals occurring in U.S. West Coast waters during `r min.year`-`r max.year` (Table 1, Appendix 1), for species included in the Pacific Marine Mammal Stock Assessments (SARs) ([Carretta *et al.* 2023](https://doi.org/10.25923/5ysf-gt95)). Subsistence and directed takes, such as gray whales taken by Russian natives, are not included in this report, but are reported in published SARs. All data in this report and previously-published reports (*e.g.* [Carretta *et al*. 2023](https://doi.org/10.25923/qwf2-9b97)) are available for download at GitHub as CSV files (see ʻData Availabilityʻ section).<p>
 
 Sources of injury and mortality data include stranding and disentanglement networks, public reports, commercial and recreational fishermen, researchers, and fishery observer programs. Records include observations of dead and injured marine mammals at sea and ashore attributed to anthropogenic sources. Injury sources include, but are not limited to, vessel strikes, gillnet entanglement, pot and trap gear entanglement, shootings, marine debris entanglement, research-related injuries/deaths, hook and line fishery interactions, and harassment by the public. Most records originate from observations in California, Oregon, and Washington, though a few Alaska records of Eastern North Pacific gray whales (*Eschrichtius robustus*) and northern elephant seal (*Mirounga angustirostris*) are included, because these species are assessed in the Pacific region SARs. Other marine mammals, such as Steller sea lions (*Eumetopias jubatus*), that occur in California, Oregon, and Washington waters are assessed in Alaska region SARs [(Young *et al.* 2023)](https://repository.library.noaa.gov/view/noaa/52074) and are included in injury reports produced by the Alaska region ([Freed *et al.* 2023](https://repository.library.noaa.gov/view/noaa/55810)). Two stocks of northern fur seal (*Callorhinus ursinus*) overlap in U.S. West Coast waters seasonally from December through May, the Eastern North Pacific stock (assessed in Alaska region SARs) and the California stock (assessed in Pacific region SARs) and interactions that occur in U.S. West Coast waters during that time period are assigned to both stocks. Injury determinations for Pacific region species/stocks in the central Pacific from Hawaii westward are included in separate reports ([Bradford 2023](https://repository.library.noaa.gov/view/noaa/48788), [Bradford and Lyman 2023](https://repository.library.noaa.gov/view/noaa/48787)).<p>
 
@@ -78,7 +79,7 @@ A second form of MSI proration occurs in Pacific and Alaska marine mammal stock 
 
 ### Number of cases vs MSI totals
 
-In this report, we distinguish between the number of cases documented, versus the sum of total mortality and serious injury ($\sum$MSI) reported here and in marine mammal stock assessments. Using humpback whales as an example, the total number of cases assessed between `r min.year`-`r max.year` was n=`r nrow(MN)`, whereas $\sum$MSI resulting from these cases was `r sum(MN$MSI.Value)` (Table 1). The reader should note that human-caused MSI totals included in SARs may exceed totals summarized in this report. This is because SARs may include statistical estimates of undetected MSI from fisheries bycatch ([Carretta 2023](https://www.int-res.com/abstracts/dao/v103/n3/p229-264/), [Jannot *et al.* 2021](https://doi.org/10.3389/fmars.2021.775187)), estimates of vessel strike mortality [(Rockwood *et al.* 2017)](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0183052&utm_content=bufferf4538&utm_medium=social&utm_source=pinterest.com&utm_campaign=buffer), proration of unidentified whale injuries to species [(Carretta 2018)](https://www.int-res.com/abstracts/esr/v36/p89-98/), and corrected estimates of fishery-related stranding numbers from estimates of carcass recovery [(Carretta *et al.* 2016b)](https://onlinelibrary.wiley.com/doi/pdf/10.1111/mms.12264). 
+In this report, we distinguish between the number of cases documented, versus the sum of total mortality and serious injury ($\sum$MSI) reported here and in marine mammal stock assessments. Using humpback whales as an example, the total number of cases assessed between `r min.year`-`r max.year` was n=`r nrow(MN)`, whereas $\sum$MSI resulting from these cases was `r sum(MN$MSI.Value)` (Table 1). The reader should note that human-caused MSI totals included in SARs may exceed totals summarized in this report. This is because SARs may include statistical estimates of undetected MSI from fisheries bycatch ([Carretta 2023](https://www.int-res.com/abstracts/dao/v103/n3/p229-264/), [Jannot *et al.* 2021](https://doi.org/10.3389/fmars.2021.775187)), estimates of vessel strike mortality [(Rockwood *et al.* 2017)](https://doi.org/10.1371/journal.pone.0183052), proration of unidentified whale injuries to species [(Carretta 2018)](https://www.int-res.com/abstracts/esr/v36/p89-98/), and corrected estimates of fishery-related stranding numbers from estimates of carcass recovery [(Carretta *et al.* 2016b)](https://onlinelibrary.wiley.com/doi/pdf/10.1111/mms.12264). 
 
 ## Results
 
@@ -98,9 +99,9 @@ A small percentage of pinnipeds died after an initial injury assessment of NSI (
 
 ## Data Availability
 
-The data summarized in this report is available at [GitHub for download](https://github.com/SWFSC/MSI-data/blob/main/2019_2023_5yr_MSI.csv) as a CSV file.
+The data summarized in this report is available as a [CSV file at GitHub](https://github.com/SWFSC/MSI-report/blob/main/data/2019_2023_5yr_MSI.csv).
 
-Data from prior reports is [available here.](https://github.com/SWFSC/MSI-data/blob/main/Anthropogenic.MSI.cases.2007-2023.csv)
+<!-- Data from previous years is [available here.](https://github.com/SWFSC/MSI-report/blob/main/data/Anthropogenic.MSI.Cases.AllYears.csv) -->
 
 ## Acknowledgments
 Many of the records in this report were provided by those who devote their time to rescue and aid marine mammals in the wild. We would like to thank the fishery observers, academic researchers, disentanglement and stranding network personnel, vessel skippers, and members of the public for their reports on dead and injured marine mammals. Thanks to Allison Henry, Nancy Young, Amelia Brower, James Freed, and the Pacific Scientific Review Group for reviewing our serious injury cases.
@@ -126,14 +127,14 @@ Many of the records in this report were provided by those who devote their time 
 [NMFS, National Marine Fisheries Service. 2022. Policy for Distinguishing Serious from Non-Serious Injury of Marine Mammals.](https://media.fisheries.noaa.gov/2022-02/02-238_Policy%20Renewal_ready%20for%20Coit%20signature%20-%20signed.pdf)<p>
 [Pace III, R.M., Williams, R., Kraus, S.D., Knowlton, A.R. and Pettis, H.M., 2021. Cryptic mortality of North Atlantic right whales. Conservation Science and Practice, 3(2), p.e346.](https://conbio.onlinelibrary.wiley.com/doi/full/10.1111/csp2.346)<p>
 [Prado, J.H.F., E.R. Secchi, and P.G. Kinas. 2013. Mark-recapture of the endangered franciscana dolphin (Pontoporia blainvillei) killed in gillnet fisheries to estimate past bycatch from time series of stranded carcasses in southern Brazil. Ecological Indicators 32:35-41.](https://www.sciencedirect.com/science/article/pii/S1470160X13001118?via%3Dihub)<p>
-[Rockwood, R.C., Calambokidis, J. and Jahncke, J., 2017. High mortality of blue, humpback and fin whales from modeling of vessel collisions on the US West Coast suggests population impacts and insufficient protection. PLoS One, 12(8), p.e0183052.](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0183052&utm_content=bufferf4538&utm_medium=social&utm_source=pinterest.com&utm_campaign=buffer)<p>
+[Rockwood, R.C., Calambokidis, J. and Jahncke, J., 2017. High mortality of blue, humpback and fin whales from modeling of vessel collisions on the US West Coast suggests population impacts and insufficient protection. PLoS One, 12(8), p.e0183052.](https://doi.org/10.1371/journal.pone.0183052)<p>
 [Wade, P.R. 1998. Calculating limits to the allowable human-caused mortality of cetaceans and pinnipeds. Marine Mammal Science 14:1-37.](https://onlinelibrary.wiley.com/doi/10.1111/j.1748-7692.1998.tb00688.x)<p>
 [Wells, R.S., J.B. Allen, G. Lovewell, J. Gorzelany, R.E. Delynn, D.A. Fauquier, and N.B. Barros. 2015. Carcass-recovery rates for resident bottlenose dolphins in Sarasota Bay, Florida. Marine Mammal Science 31:355-368.](https://onlinelibrary.wiley.com/doi/10.1111/mms.12142)<p>
 [Williams, R., S. Gero, L. Bejder, J. Calambokidis, S.D. Kraus, D. Lusseau, A.J. Read, and J. Robbins. 2011. Underestimating the damage: interpreting cetacean carcass recoveries in the context of the Deepwater Horizon/BP incident. Conservation Letters 4:228-233.](https://conbio.onlinelibrary.wiley.com/doi/full/10.1111/j.1755-263X.2011.00168.x)<p>
 [Young, N.C., Brower, A.A., Muto, M.M., Freed, J.C., Angliss, R.P., Friday, N.A., Boveng, P.L., Brost, B.M., Cameron, M.F., Crance, J.L., Dahle, S.P., Fadely, B.S., Ferguson, M.C., Goetz, K.T., London, Oleson, E.M., J. M., Ream, R.R., Richmond, E.L., Shelden, K.E.W., Sweeney, K.L., Towell, R.G., Wade, P.R., Waite, J.M., and Zerbini, A.N. 2023. Alaska marine mammal stock assessments, 2022. U.S. Department of Commerce, NOAA Technical Memorandum NMFS-AFSC-474, 316 p.](https://repository.library.noaa.gov/view/noaa/52074)<p>
 
 \newpage
-
+## Tables and Figures
 ### Table 1. Species, number of mortality and injury cases assessed, and total mortality and serious injury (MSI.Total), `r min.year` - `r max.year`.
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}

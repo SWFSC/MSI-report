@@ -37,12 +37,7 @@ Clean up
 
 
 Finalizing 2019-2023:
-* check links (e.g. fix in Summary)
-* update data availability links
-* use "data from previous years" instead of "data from other reports", and link to folder instead of file, so can replace the all-year file each year
-* fix nesting for report headers - add Tables header so tables are not within references
 * clean up repo
-* update README
 * make public, release version with publication
 
 

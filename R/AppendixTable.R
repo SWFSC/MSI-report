@@ -1,10 +1,7 @@
 # Create Word doc Appendix of HCMSI cases
 
-rm(list=ls())
-
 library(flextable)
 library(officer)
-library(dplyr)
 
 load("SeriousInjuryReport.RData")
 
@@ -30,25 +27,7 @@ doc <- read_docx()
 doc <- body_add_flextable(doc, value = A1, align = "left")
 print(doc, target = "Appendix_1.docx")
 
-# Once in Word, Layout/autofit/autofit to contents
-
-# Add Table header from placeholder page in HCM_SI_Report.docx
+# Once in Word:
+ # - Layout/autofit/autofit to contents
+ # - Add Table header from placeholder page in HCM_SI_Report.docx
 # Note carriage returns in Narrative can mess up Word table formatting
-
-# # Additional table that includes only most-recent complete year of data for SRG review
-# 
-# latest.year <- latest.yr[-1]
-# names(latest.year) <- shortNames
-# A2 <- flextable(latest.year)
-# A2 <- fontsize(A2, size=7, part="all")
-# A2 <- align(A2, align="center", part="all")
-# A2 <- font(A2, part="all", fontname="Arial Narrow")
-# A2 <- set_table_properties(A2, layout = "autofit")
-# A2 <- colformat_num(A2, big.mark="")
-# std_border = fp_border(color="gray")
-# A2 <- hline(A2, part="all", border = std_border)
-# 
-# doc <- officer::read_docx()
-# doc <- body_add_flextable(doc, value = A2, align = "left")
-# print(doc, target = "Appendix_2.docx")
-# 

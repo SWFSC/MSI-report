@@ -2,7 +2,21 @@
 
 ## Description
 
-This repository houses scripts used for automated MSI report production. It uses HCMSI_Records_SWFSC_Main.xlsx in the [SWFSC/MSI-data](https://github.com/SWFSC/MSI-data) repository.  
+This repository houses scripts used to produce the Southwest Fisheries Science 
+Center's annual report on human-caused mortality and serious injury of marine 
+mammals. Running these scripts requires access to the file HCMSI_Records_SWFSC_Main.xlsx 
+in the [SWFSC/MSI-data](https://github.com/SWFSC/MSI-data) repository.  
+
+Most recent published report: 
+
+Carretta, James V., Justin Greenman, Kristin Wilkinson, Lauren Saez, Dan Lawson, 
+Justin Viezbicke, and K. Alexamdra Curtis. 2025. Sources of human-related injury 
+and mortality for U.S. Pacific West Coast marine mammal stock assessments, 2019-2023. 
+U.S. Department of Commerce, NOAA Technical Memorandum NMFS-SWFSC-XXX. 
+https://doi.org/10.25923/xxxx-xxxx
+
+Data associated with this report, as cited in the Data Availability statement, 
+are available in the [data folder of this repository](https://github.com/SWFSC/MSI-report/tree/main/data). 
 
 ## Disclaimer
 
