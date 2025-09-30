@@ -17,31 +17,27 @@ Word doc edits:
   - fix format by right-clicking on arrow thingy and selecting autofit to contents
   - copy table header from end of main doc and insert as Left Header text applied to all pages, format if needed
   - ensure no blank pages
-  - finally convert to PDF (this will take a while) - if get stuck, try printing to PDF?
+  - finally *print* to PDF (converting with Acrobat typically gets stuck, OK for table not to be 508 compliant)
 * to main doc
   - remove TOC because nesting awry and not necessary (or insert page break before Table of Contents (TOC))
-  - move author block up to below title from under TOC, delete/update date, format title page
+  - delete/update date, format title page
   - check for rows with zero counts in all Tables and eliminate (ideally by editing HCM_SI_Report.Rmd)
   - check for "n=0" in text summaries and eliminate where appropriate.
   - manually remove "rowname" from tables 2a-c
   - Table 3-5: fix format by right-clicking on arrow thingy and selecting autofit to contents
   - add thousands-place commas if missing
-  - left-click Table of Contents header, select update table -> 'Update entire table'
+  - check for italicization of species names in references
   - delete Appendix 1 placeholder page
   - any other formatting
   - ensure no blank pages
   - finally convert to PDF
+* combine these two documents with Acrobat and make 508 compliant
+  - can use text below to aid in populating document properties
 
 Clean up
 * copy 5-year and all-time CSVs to correct repo/folder, commit, and push
 
-
-Finalizing 2019-2023:
-* clean up repo
-* make public, release version with publication
-
-
-Doc properties:
+Doc properties
 Sources of human-related injury and mortality for U.S. Pacific West Coast marine mammal stock assessments, 2019-2023
 James V. Carretta; Justin Greenman; Kristin Wilkinson; Lauren Saez; Dan Lawson; Justin Viezbicke; K. Alexandra Curtis
 NOAA Technical Memorandum NMFS-SWFSC-XXX
@@ -55,3 +51,7 @@ Mortality
 Marine Mammal
 Stock Assessment
 
+
+Finalizing 2019-2023:
+* clean up repo
+* make public, release version with publication
