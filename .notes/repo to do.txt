@@ -8,14 +8,15 @@
 * remove appendix 1? add note in data availability pointing to supp material, provide csv with pdf to IR? Karin wants to keep A1
 * can table-writing functionality be further packaged into functions so easier to adapt and read?
 * improve automation of formatting - css file available for TMs that can add in?
-* potentially no longer include Table 1 (or other tables?) - see reports from other regions
 * reorg the creation of many other products from this code
 * download data from web? Or require repo to be installed locally so can update it
 * convert to Quarto?
 * gt package for tables?
 * set up as releases: SRG draft for review, final annual report
 * publish html to POSIT Connect for limited (SRG) review?
-* fix conversion issue to pdf for Appendix 1?
+* fix conversion issue to pdf for Appendix 1 or ditch it altgoether
+  - potentially no longer include Table 1 (or other tables?) - see reports from other regions
+* improve 508 compliance automation? https://nmfs-opensci.github.io/ResourceBook/content/508_compliance.html
 
 
 * future main file format and location? 
