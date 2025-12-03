@@ -55,3 +55,4 @@ Stock Assessment
 Finalizing 2019-2023:
 * clean up repo
 * make public, release version with publication
+* email distribution list: coauthors, Hanna Miler, Meghan Roberts, ...
