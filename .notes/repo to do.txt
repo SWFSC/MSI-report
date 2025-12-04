@@ -13,6 +13,7 @@
 * convert to Quarto?
 * gt package for tables?
 * set up as releases: SRG draft for review, final annual report
+* set up GitHub Action for emailing distribution list upon version release?
 * publish html to POSIT Connect for limited (SRG) review?
 * fix conversion issue to pdf for Appendix 1 or ditch it altgoether
   - potentially no longer include Table 1 (or other tables?) - see reports from other regions
