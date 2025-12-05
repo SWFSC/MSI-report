@@ -213,9 +213,19 @@
 # write 5-year csv output file with added codes (move manually to MSI-report/data directory after checking)
 	write.csv(x, paste(min.year, "_", max.year, "_5yr_MSI.csv", sep=""), row.names=F, fileEncoding="UTF-8")
 	
-# # write all data through most-recently published report for Github upload (move manually to MSI-report/data directory after checking)
-# 	MSI.all.data <- data[data$Year<=max.year,]
-# 	write.csv(MSI.all.data, paste("Anthropogenic.MSI.Cases.AllYears.csv", sep=""), row.names=F, fileEncoding="UTF-8")
+# write all data through most-recently published report for Github upload (move manually to MSI-report/data directory after checking)
+	MSI.all.data <- data[data$Year<=max.year,]
+	
+	### BUT ###
+	# > msi.all.5 <- MSI.all.data %>% filter(Year %in% 2019:2023)
+	# > all.equal(x, msi.all.5)
+	# [1] "Component “MSI.Value”: Mean absolute difference: 1"  
+	# [2] "Component “COUNT.AGAINST.LOF”: 168 string mismatches"
+	# [3] "Component “COUNT.AGAINST.PBR”: 19 string mismatches" 
+	
+	# write.csv(MSI.all.data, paste("HCMSI_Records_SWFSC_", min(data$Year), "_",
+	                              "LatestPublishedYear",
+	                              ".csv", sep=""), row.names=F, fileEncoding="UTF-8")
 	
 # extract each species
 	## pinnipeds
