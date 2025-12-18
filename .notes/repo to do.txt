@@ -1,23 +1,26 @@
-* consider a landing page for the MSI reports for our region
-* separate data review file that flags errors
-* carry over data edits for all years to XLS
 * add back in CSV with data for previous years - this allows LOF to do reproducible science. 
-* change title: "U.S. West Coast Pacific" 
+* separate data review file in MSI-data (?) that flags errors and perhaps corrects
+* carry over data edits for all years to XLS
+* change title: "U.S. West Coast Pacific"?
+* remove appendix 1? Karin F prefers to keep A1, but now a 508 nightmare
+  - ask IR directly if tables have to 508-compliant now as Steph F states? Jim was told by IR directly they do not, which Kit did not know.
+  - id drop: add note in data availability pointing to supp material, provide csv with pdf to IR? or just point to files in repo?
+  - or able to fix conversion issue to pdf for Appendix 1? (font?)
+* improve automation of formatting and 508 
+  - css file available for TMs that can add in?
+  - https://nmfs-opensci.github.io/ResourceBook/content/508_compliance.html
+  - convert to Quarto?
+  - does 'gt' package for tables help anything?
 * SeriousInjuryExtract as a function that takes a working directory, year range
-* silence NA read warnings in read_excel for SeriousInjuryPackage
-* remove appendix 1? add note in data availability pointing to supp material, provide csv with pdf to IR? Karin wants to keep A1
 * can table-writing functionality be further packaged into functions so easier to adapt and read?
-* improve automation of formatting - css file available for TMs that can add in?
+* silence NA read warnings in read_excel for SeriousInjuryPackage
 * reorg the creation of many other products from this code
 * download data from web? Or require repo to be installed locally so can update it
-* convert to Quarto?
-* gt package for tables?
-* set up as releases: SRG draft for review, final annual report
 * set up GitHub Action for emailing distribution list upon version release?
+* set up as releases: SRG draft for review, final annual report
 * publish html to POSIT Connect for limited (SRG) review?
-* fix conversion issue to pdf for Appendix 1 or ditch it altgoether
-  - potentially no longer include Table 1 (or other tables?) - see reports from other regions
-* improve 508 compliance automation? https://nmfs-opensci.github.io/ResourceBook/content/508_compliance.html
+* potentially no longer include Table 1 (or other tables?) - see reports from other regions
+* Hanna and Meghan: consider a landing page for the MSI reports for our region
 
 
 * future main file format and location? 

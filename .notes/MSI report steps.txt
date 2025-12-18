@@ -5,13 +5,19 @@ MSI report steps
 * data directory
 * year range
 
-(2) run AppendixTable.R (ensure in correct directory for Rdata file produced by previous script)
+(2) run AppendixTable.R (ensure working directory or path is where Rdata file was created by previous script)
 
-(3) Update in HCM_SI_Report.Rmd, then knit:
+(3) HCM_SI_Report.Rmd
 * check years are correct
 * update Data Availability link for 5-year data
+* fix italicization of species names in references as needed
+* knit
 
-Word doc edits:
+(4) Clean up
+* copy 5-year and all-time CSVs to MSI-report/data folder if not written there directly
+* commit and push changes to scripts and data files in MSI-report repo
+
+(5) Word doc edits:
 * to appendix doc:
   - switch to Landscape orientation
   - fix format by right-clicking on arrow thingy and selecting autofit to contents
@@ -25,22 +31,23 @@ Word doc edits:
   - check for "n=0" in text summaries and eliminate where appropriate.
   - manually remove "rowname" from tables 2a-c
   - Table 3-5: fix format by right-clicking on arrow thingy and selecting autofit to contents
-  - add thousands-place commas if missing
-  - check for italicization of species names in references
+  - add thousands-place commas where missing
   - delete Appendix 1 placeholder page
   - any other formatting
   - ensure no blank pages
   - finally convert to PDF
 * combine these two documents with Acrobat and make 508 compliant
-  - can use text below to aid in populating document properties
+  - see below for example text for populating Document Properties
 
-Clean up
-* copy 5-year and all-time CSVs to correct repo/folder, commit, and push
+(6) After publication to SWFSC
+* update README, version release for this repo
+* email distribution list (can this be set up as GitHub Action with release?): Jeff, Alex, Justin Greenman - NOAA Federal <justin.greenman@noaa.gov>, Kristin Wilkinson - NOAA Federal <kristin.wilkinson@noaa.gov>, Lauren Saez - NOAA Affiliate <lauren.saez@noaa.gov>, Dan Lawson - NOAA Federal <dan.lawson@noaa.gov>, Justin Viezbicke - NOAA Federal <justin.viezbicke@noaa.gov>, Hanna Miller, Meghan Roberts, ... 
 
-Doc properties
+
+Document properties
 Sources of human-related injury and mortality for U.S. Pacific West Coast marine mammal stock assessments, 2019-2023
 James V. Carretta; Justin Greenman; Kristin Wilkinson; Lauren Saez; Dan Lawson; Justin Viezbicke; K. Alexandra Curtis
-NOAA Technical Memorandum NMFS-SWFSC-XXX
+NOAA Technical Memorandum NMFS-SWFSC-728
 Key words: 
 Southwest Fisheries Science Center
 West Coast
@@ -50,9 +57,3 @@ Interaction
 Mortality
 Marine Mammal
 Stock Assessment
-
-
-Finalizing 2019-2023:
-* clean up repo
-* make public, release version with publication
-* email distribution list: coauthors, Hanna Miler, Meghan Roberts, ... (can this be set up as GItHub Action with release?)
