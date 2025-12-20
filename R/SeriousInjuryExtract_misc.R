@@ -1,5 +1,5 @@
-# Contains code to produce additional tables from MSI data``
-# !! Run SeriousInjuryExtract.R first before running any of these
+# Contains code to produce additional tables, CSVs, figures, etc. from MSI data
+# !! Run SeriousInjuryExtract.R first
 
 # Write Large Whale file for Serious Injury Working Group
 ## Include following species
@@ -18,6 +18,15 @@ write.csv(SI.whales, "Large Whale SI data.csv", fileEncoding="UTF-8")
 
 # write CSV for Northern fur seal
 write.csv(CU, "Northern.Fur.Seal.csv")
+
+# Harbor seal stock assignments by county in WA state (is this chunk a reference for editing XLSX by hand?)
+# c("WHATCOM", "SKAGIT", "SNOHOMISH", "ISLAND", "SAN JUAN", "KING") = WA N INLAND WATERS
+# c("THURSTON") = S PUGET SOUND
+# c("PIERCE") = S PUGET SOUND *or* WA N INLAND WATERS
+# c("KITSAP")  = WA N INLAND WATERS *or* HOOD CANAL *or* S PUGET SOUND
+# c("JEFFERSON") = WA N INLAND WATERS *or* HOOD CANAL *or* OR/WA COAST
+# c("CLALLAM") = WA N INLAND WATERS *or* OR/WA COAST
+# c("MASON") = HOOD CANAL *or* S PUGET SOUND
 
 # harbor seal stocks
 PV.Hood.Canal <- PV[PV$Stock.or.Area%in%c("HOOD CANAL"),]
@@ -104,9 +113,21 @@ unid.summary = sort(tapply(unid$MSI.Value, unid$Interaction.Type, sum), decreasi
 #	table(unid$Interaction.Type, unid$MSI.Value, unid$Interaction.Type)
 
 
-# write most-recent year data for all species to CSV file (for SRG review?)
+# write most-recent year data to CSV by taxonomic group for cross-center review
+# write most-recent year large whale data to file
+whales.review.yr <- whale.records[whale.records$Year==max.year,]
+write.csv(whales.review.yr, "Whales_Cross_Center_Review.csv", fileEncoding="UTF-8")
+# write most-recent year pinniped data to file
+pinnipeds.review.yr <- pinn.records[pinn.records$Year==max.year,]
+write.csv(pinnipeds.review.yr, "Pinnipeds_Cross_Center_Review.csv", fileEncoding="UTF-8")
+# write most-recent year small cetaceans to file
+small.cet.review.yr <- small.cet.records[small.cet.records$Year==max.year,]
+write.csv(small.cet.review.yr, "Small_Cetaceans_Cross_Center_Review.csv", fileEncoding="UTF-8")
+
+# write most-recent year data for all species to CSV file (for SRG review)
 latest.yr <- x[x$Year==max.year,]
 write.csv(latest.yr, "Latest_Year_HCMSI.csv", fileEncoding="UTF-8")
+
 
 # Table that includes only most-recent complete year of data for SRG review
 latest.year <- latest.yr[-1]
@@ -123,17 +144,6 @@ A2 <- hline(A2, part="all", border = std_border)
 doc <- officer::read_docx()
 doc <- body_add_flextable(doc, value = A2, align = "left")
 print(doc, target = "Appendix_2.docx")
-
-
-# write most-recent year large whale data to file
-whales.review.yr <- whale.records[whale.records$Year==max.year,]
-write.csv(whales.review.yr, "Whales_Cross_Center_Review.csv", fileEncoding="UTF-8")
-# write most-recent year pinniped data to file
-pinnipeds.review.yr <- pinn.records[pinn.records$Year==max.year,]
-write.csv(pinnipeds.review.yr, "Pinnipeds_Cross_Center_Review.csv", fileEncoding="UTF-8")
-# write most-recent year small cetaceans to file
-small.cet.review.yr <- small.cet.records[small.cet.records$Year==max.year,]
-write.csv(small.cet.review.yr, "Small_Cetaceans_Cross_Center_Review.csv", fileEncoding="UTF-8")
 
 # source randomForest model used to prorate unid. whale entanglement cases to species (there is no equivalent model for vessel strikes)
 # these fractional cases are added to stock assessment reports (SARs) as species-specific fractional estimates, but the unid whale ID is retained for annual serious injury reports

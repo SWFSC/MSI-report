@@ -10,8 +10,8 @@ MSI report steps
 (3) HCM_SI_Report.Rmd
 * check years are correct
 * update Data Availability link for 5-year data
-* fix italicization of species names in references as needed
 * knit
+* check word doc, including careful check of tables
 
 (4) Clean up
 * copy 5-year and all-time CSVs to MSI-report/data folder if not written there directly
