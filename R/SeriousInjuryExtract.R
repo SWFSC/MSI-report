@@ -224,7 +224,7 @@
 	USeal <- x[x$Species=="UNIDENTIFIED SEAL",]
 	USL <- x[x$Species=="UNIDENTIFIED SEA LION",]
 	UFS <- x[x$Species=="UNIDENTIFIED FUR SEAL",]
-  # small cetaceans (beaked and pilot whales not included here)
+  # small cetaceans (excluding beaked and pilot whales)
 	CD <- x[x$Species=="COMMON DOLPHIN UNIDENTIFIED",]
 	PP <- x[x$Species=="HARBOR PORPOISE",]
 	LO <- x[x$Species=="PACIFIC WHITE-SIDED DOLPHIN",]
