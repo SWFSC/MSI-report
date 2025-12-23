@@ -1,4 +1,3 @@
-* add back in CSV with data for previous years - this allows LOF to do reproducible science. 
 * separate data review file in MSI-data (?) that flags errors and perhaps corrects
 * carry over data edits for all years to XLS
 * change title: "U.S. West Coast Pacific"?
@@ -15,7 +14,7 @@
 * can table-writing functionality be further packaged into functions so easier to adapt and read?
 * silence NA read warnings in read_excel for SeriousInjuryPackage
 * reorg the creation of many other products from this code
-* download data from web? Or require repo to be installed locally so can update it
+* set up to access data directly from web? or makes sense for MSI-data to be cloned already so can populate with CSVs
 * set up GitHub Action for emailing distribution list upon version release?
 * set up as releases: SRG draft for review, final annual report
 * publish html to POSIT Connect for limited (SRG) review?

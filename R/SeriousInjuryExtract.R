@@ -3,7 +3,7 @@
 # Adapted from Jim Carretta's 02-25-2025 script
 # Input file renamed "HCMSI_Records_SWFSC_Main.xlsx" in Sep 2025
 
-###*** requires further updating to fully categorize all systematic (observer program, research-related, authorized removal) records as such
+###*** requires further updating to fully categorize all systematic (observer program, research-related, authorized removal) records
   
 	library(ggplot2)
 	library(flextable)
@@ -12,115 +12,36 @@
 	library(dplyr)
 	library(magrittr)
 	
+	# set local working directory and local path to main data file
 	setwd("C:/Users/alex.curtis/Data/MSI")
+	path.dat <- "C://Users/alex.curtis/Data/Github/MSI-data/data/"
 	
-	data = read_excel("../Github/MSI-data/data/HCMSI_Records_SWFSC_Main.xlsx")
-	data = data[,-1]   # Drop SWFSC Record ID column
+	# read in main data file
+	data = read_excel(paste0(path.dat, "HCMSI_Records_SWFSC_Main.xlsx"))
+	# data = data[,-1]   # Drop SWFSC Record ID column (is this line needed?)
 	
+	# get species group lists
+	spgroups <- read.csv(paste0(path.dat, "lt_SpeciesGroups.csv"))
+	pinn.spp <- spgroups %>% filter(SpeciesGroup=="pinniped") %>% select(Species) %>% unlist()
+	sm.cet.spp <- spgroups %>% filter(SpeciesGroup=="small cetacean") %>% select(Species) %>% unlist()
+	sm.cet.spp <- spgroups %>% filter(SpeciesGroup=="small cetacean") %>% select(Species) %>% unlist()
+	lg.whale.spp <- spgroups %>% filter(SpeciesGroup=="large whale") %>% select(Species) %>% unlist()
+	rm(spgroups)
 	
-# check for missing data from critical fields
-	missing.data <- function(df) {
-	  # find missing data by column
-	  a <- which(is.na(df$Initial.Injury.Assessment==TRUE))
-	  b <- which(is.na(df$Final.Injury.Assessment==TRUE))
-	  c <- which(is.na(df$MSI.Value==TRUE))
-	  d <- which(is.na(df$COUNT.AGAINST.LOF==TRUE))
-	  e <- which(is.na(df$COUNT.AGAINST.PBR==TRUE))
-	  f <- which(is.na(df$Year==TRUE))
-	  # list all rows with missing data
-	  missing.list <- rbind.data.frame(a,b,c,d,e,f)
-	  if(nrow(missing.list)>=1) {
-	    warning("missing data in lines: ", missing.list)
-	  } else { 
-	    message("no missing data") 
-	    }
-	  }
-	missing.data(data)
-	invisible(Sys.sleep(10))
-	rm(missing.data)
+	# get interaction type classifications (commercial or other)
+	hcmsi.sources <- read.csv(paste0(path.dat, "lt_IntrxnTypes.csv"))
+	commercial <- hcmsi.sources %>% filter(SARTable=="commercial") %>% select(Interaction.Type) %>% unlist()
+	other <- hcmsi.sources %>% filter(SARTable=="other") %>% select(Interaction.Type) %>% unlist()
+	rm(hcmsi.sources)
 	
 	
-# get lists of species in 'pinniped', 'small cetacean', and 'large whale' groups
-	# pinnipeds
-	pinn.spp = unique(grep("SEA|PINN|OTAR", data$Species, value=TRUE))
-	# small cetaceans (all odontocetes except sperm whales)
-	sm.cet.spp = unique(grep("DOL|PORP|PILOT|KILLER|BAIRD'S|BLAINVILLE", 
-	                         data$Species, value=TRUE))
-  # large whales
-	lg.whale.spp = unique(grep("BLUE|FIN WHALE|SEI|BRYDE'S|HUMP|GRAY|UNIDENTIFIED WHALE|MINKE|SPERM", 
-	                           data$Species, value=TRUE))
-	# find any species not captured in the above lists
-	other.spp <- setdiff(unique(data$Species), c(pinn.spp, sm.cet.spp, lg.whale.spp))
-	if (length(other.spp)>0) stop("The following species are not included in a species group:\n",
-	                              paste(other.spp, collapse=","))
-	rm(other.spp)
-	
-
-# classify causes of MSI as 'commercial' or 'other'
-	commercial = c("GILLNET FISHERY", "UNIDENTIFIED FISHERY INTERACTION", "CA SWORDFISH DRIFT GILLNET FISHERY",
-	               "CA HALIBUT AND WHITE SEABASS SET GILLNET FISHERY", "UNIDENTIFIED NET FISHERY", "CATCH SHARES BOTTOM TRAWL",
-	               "UNIDENTIFIED POT - TRAP FISHERY ENTANGLEMENT", "OPEN ACCESS CA HALIBUT BOTTOM TRAWL", "LIMITED ENTRY SABLEFISH HOOK AND LINE",
-	               "DUNGENESS CRAB POT FISHERY", "CRAB POT FISHERY", "CATCH SHARES HOOK AND LINE", "LIMITED ENTRY TRAWL BOTTOM TRAWL",
-	               "AT-SEA HAKE PELAGIC TRAWL", "HAWAII LONGLINE SHALLOW SET FISHERY", "CATCHER PROCESSOR MIDWATER TRAWL", "LOBSTER TRAP ENTANGLEMENT",
-	               "CA SPOT PRAWN TRAP FISHERY", "LIMITED ENTRY CA HALIBUT BOTTOM TRAWL", "TRAWL FISHERY (UNKNOWN)", "BAIT BARGE NET ENTANGLEMENT",
-	               "COD POT FISHERY ENTANGLEMENT", "LIMITED ENTRY TRAWL HOOK AND LINE", "OPEN ACCESS FIXED GEAR HOOK AND LINE", "SEAL BOMB",
-	               "SHORESIDE HAKE MIDWATER TRAWL", "WEST COAST GROUNDFISH NEARSHORE FIXED GEAR FISHERY", "WEST COAST GROUNDFISH TRAWL (PACIFIC HAKE AT-SEA PROCESSING COMPONENT) FISHERY",
-	               "AK BSAI ATKA MACKEREL TRAWL", "AK BSAI FLATFISH TRAWL", "AQUACULTURE FACILITY ENTANGLEMENT", "CA - OR - WA SABLEFISH POT FISHERY",
-	               "CRAB POT FISHERY - HOOK AND LINE FISHERY", "FIXED GEAR SABLEFISH FISHERY OBSERVER REPORT", "LIMITED ENTRY SABLEFISH POT FISHERY",
-	               "NEARSHORE HOOK AND LINE", "PACIFIC WHITING TRAWL FISHERY", "RED KING CRAB POT FISHERY ENTANGLEMENT", "SALMON GILLNET FISHERY",
-	               "SET GILLNET FISHERY INTERACTION", "SHOOTING - GILLNET FISHERY", "UNIDENTIFIED NET FISHERY - SHOOTING", "UNIDENTIFIED NET FISHERY - VESSEL STRIKE",
-	               "LIMITED ENTRY FIXED GEAR DTL HOOK AND LINE"
-	)
-	non.commercial = c("HOOK AND LINE FISHERY", "SHOOTING", "POWER PLANT ENTRAINMENT", "MARINE DEBRIS",
-	                   "VESSEL STRIKE", "OIL  -  TAR", "SCIENTIFIC RESEARCH", "AUTHORIZED REMOVAL", "HARASSMENT",
-	                   "HUMAN-INDUCED ABANDONMENT", "DOG ATTACK", "NORTHERN WASHINGTON MARINE SET GILLNET FISHERY, TRIBAL",
-	                   "VEHICLE COLLISION", "GILLNET FISHERY, TRIBAL", "UNIDENTIFIED HUMAN INTERACTION", "STAB WOUNDS", "BLUNT FORCE TRAUMA",
-	                   "ENTRAPMENT", "GAFF INJURY", "UNDERWATER DETONATION EXERCISES", "UNAUTHORIZED REMOVAL", "ELECTRIC SHOCK", 
-	                   "NON-FISHERY ENTANGLEMENT", "NORTHERN WASHINGTON MARINE DRIFT GILLNET FISHERY, TRIBAL", "ROPE", "SHOOTING - HOOK AND LINE FISHERY",
-	                   "SPEARING", "HARASSMENT - DOG ATTACK", "HARPOON", "NORTHERN WASHINGTON OCEAN TROLL FISHERY, TRIBAL", "SPRAY PAINTING",
-	                   "TRIBAL CRAB POT GEAR"
-	)
-	###*** CHECK THAT ALL CAUSES ARE CAPTURED *****#####
-	other.causes <- setdiff(unique(data$Interaction.Type), c(commercial, non.commercial))
-	
-####**** edits to all data ****#### (set up as stops with record numbers to fix)
-	
-	# correct MSI.Value field for mis-typed entries
-	data$MSI.Value[which(data$Final.Injury.Assessment=="NSI")] = 0
-	data$MSI.Value[which(data$Final.Injury.Assessment %in% c("DEAD","CAPTIVITY"))] = 1
-	
-	# assign small cetacean and pinniped records with final SI designation as MSI.Value=1
-	# (not applicable to large whales, which may have a prorated value)
-	pinn.smcet.SI.final = which(data$Final.Injury.Assessment=="SI" & 
-	                               data$Species %in% c(pinn.spp, sm.cet.spp))
-	data$MSI.Value[pinn.smcet.SI.final] = 1
-	rm(pinn.smcet.SI.final)
-	
-	###*** add checks for whale values
-	
-	## List of Fisheries (LOF) codes 
-	data[which(data$Interaction.Type %in% commercial), "COUNT.AGAINST.LOF"] = "Y"
-	data[which(data$Interaction.Type %in% non.commercial), "COUNT.AGAINST.LOF"]="N"
-	# assign initial NSI designations as not counting against LOF
-	# (even if an interaction occurred with a commercial fishery, the interaction 
-	#  needs to have an initial designation of SI for it to 'count' against LOF)
-	data[which(data$Initial.Injury.Assessment=="NSI"), "COUNT.AGAINST.LOF"] = "N"
-	
-	## PBR codes
-	PBR.yes = grep("CAPTIVITY|DEAD|SI|SI (PRORATE)", data$Final.Injury.Assessment)
-	PBR.no = grep("NSI", data$Final.Injury.Assessment)
-	data[PBR.yes, "COUNT.AGAINST.PBR"] = "Y"
-	data[PBR.no, "COUNT.AGAINST.PBR"] = "N"
-	rm(PBR.yes, PBR.no)
-	
-
 # Set years to include in annual MSI report, subset data
 	min.year = 2019
 	max.year = 2023
 	inc.yrs = min.year:max.year
 	x <- data %>% filter(Year %in% inc.yrs)
 	
-# Function to tabulate MSI by source and species
+# Function to tabulate MSI by source and species, format for Markdown
 	Table_MSI <- function(df) {    
 	  Interaction.Type <- df$Interaction.Type
 	  MSI.Value <- df$MSI.Value
