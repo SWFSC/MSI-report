@@ -1,5 +1,4 @@
-* separate data review file in MSI-data (?) that flags errors and perhaps corrects
-* carry over data edits for all years to XLS
+* additional changes suggested by Jim, e.g. for what to include in "systematic"
 * change title: "U.S. West Coast Pacific"?
 * remove appendix 1? Karin F prefers to keep A1, but now a 508 nightmare
   - ask IR directly if tables have to 508-compliant now as Steph F states? Jim was told by IR directly they do not, which Kit did not know.
