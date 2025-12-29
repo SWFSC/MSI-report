@@ -3,17 +3,12 @@
 
 # Write Large Whale file for Serious Injury Working Group
 ## Include following species
-large.whales = c("BLUE WHALE", "FIN WHALE", "GRAY WHALE", "HUMPBACK WHALE", "SEI WHALE",
-                 "BRYDE'S WHALE", "SPERM WHALE", "MINKE WHALE", "UNIDENTIFIED WHALE")
-lw.vec = which(data$Species%in%large.whales)
-lw.data = data[lw.vec,]
+lw.data = data %>% filter(Species %in% lg.whale.spp)
 write.csv(lw.data, "Large Whales US West Coast Serious Injury Working Group.csv", row.names=F, fileEncoding="UTF-8")
 
 # write large whale output file for proration analysis
-include.species = c("SPERM WHALE", "GRAY WHALE", "BLUE WHALE", "HUMPBACK WHALE", "UNIDENTIFIED WHALE", "MINKE WHALE", "FIN WHALE", "SEI WHALE")
-match.species = match(data$Species, include.species)
-pos.match <- which(is.na(match.species)==FALSE)
-SI.whales <- data[pos.match,]
+lw.prorate.sp = c("SPERM WHALE", "GRAY WHALE", "BLUE WHALE", "HUMPBACK WHALE", "UNIDENTIFIED WHALE", "MINKE WHALE", "FIN WHALE", "SEI WHALE")
+SI.whales <- data %>% filter(Species %in% lw.prorate.sp)
 write.csv(SI.whales, "Large Whale SI data.csv", fileEncoding="UTF-8")
 
 # write CSV for Northern fur seal

@@ -1,4 +1,3 @@
-* additional changes suggested by Jim, e.g. for what to include in "systematic"
 * change title: "U.S. West Coast Pacific"?
 * remove appendix 1? Karin F prefers to keep A1, but now a 508 nightmare
   - ask IR directly if tables have to 508-compliant now as Steph F states? Jim was told by IR directly they do not, which Kit did not know.
@@ -18,7 +17,7 @@
 * set up as releases: SRG draft for review, final annual report
 * publish html to POSIT Connect for limited (SRG) review?
 * potentially no longer include Table 1 (or other tables?) - see reports from other regions
-* Hanna and Meghan: consider a landing page for the MSI reports for our region
+* Hanna and Meghan suggest: consider a landing page for the MSI reports for our region
 
 
 * future main file format and location? 

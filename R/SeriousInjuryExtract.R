@@ -3,43 +3,41 @@
 # Adapted from Jim Carretta's 02-25-2025 script
 # Input file renamed "HCMSI_Records_SWFSC_Main.xlsx" in Sep 2025
 
-###*** requires further updating to fully categorize all systematic (observer program, research-related, authorized removal) records
-  
-	library(ggplot2)
+# Load required packages
+  library(ggplot2)
 	library(flextable)
 	library(officer)
 	library(readxl)
 	library(dplyr)
 	library(magrittr)
 	
-	# set local working directory and local path to main data file
+# Set local paths
+	## set local working directory (make this different from GitHub repo)
 	setwd("C:/Users/alex.curtis/Data/MSI")
+	## set local path to main data file
 	path.dat <- "C://Users/alex.curtis/Data/Github/MSI-data/data/"
 	
-	# read in main data file
+# Import data
 	data = read_excel(paste0(path.dat, "HCMSI_Records_SWFSC_Main.xlsx"))
-	# data = data[,-1]   # Drop SWFSC Record ID column (is this line needed?)
 	
-	# get species group lists
-	spgroups <- read.csv(paste0(path.dat, "lt_SpeciesGroups.csv"))
-	pinn.spp <- spgroups %>% filter(SpeciesGroup=="pinniped") %>% select(Species) %>% unlist()
-	sm.cet.spp <- spgroups %>% filter(SpeciesGroup=="small cetacean") %>% select(Species) %>% unlist()
-	sm.cet.spp <- spgroups %>% filter(SpeciesGroup=="small cetacean") %>% select(Species) %>% unlist()
-	lg.whale.spp <- spgroups %>% filter(SpeciesGroup=="large whale") %>% select(Species) %>% unlist()
-	rm(spgroups)
-	
-	# get interaction type classifications (commercial or other)
-	hcmsi.sources <- read.csv(paste0(path.dat, "lt_IntrxnTypes.csv"))
-	commercial <- hcmsi.sources %>% filter(SARTable=="commercial") %>% select(Interaction.Type) %>% unlist()
-	other <- hcmsi.sources %>% filter(SARTable=="other") %>% select(Interaction.Type) %>% unlist()
-	rm(hcmsi.sources)
-	
-	
-# Set years to include in annual MSI report, subset data
+	## Set years to include in annual MSI report, subset data
 	min.year = 2019
 	max.year = 2023
 	inc.yrs = min.year:max.year
 	x <- data %>% filter(Year %in% inc.yrs)
+	
+	## get species group lists
+	spgroups <- read.csv(paste0(path.dat, "lt_SpeciesGroups.csv"))
+	pinn.spp <- spgroups %>% filter(SpeciesGroup=="pinniped") %>% select(Species) %>% unlist()
+	sm.cet.spp <- spgroups %>% filter(SpeciesGroup=="small cetacean") %>% select(Species) %>% unlist()
+	lg.whale.spp <- spgroups %>% filter(SpeciesGroup=="large whale") %>% select(Species) %>% unlist()
+	rm(spgroups)
+	
+	## get interaction type classifications (commercial or other)
+	hcmsi.sources <- read.csv(paste0(path.dat, "lt_IntrxnTypes.csv"))
+	commercial <- hcmsi.sources %>% filter(SARTable=="commercial") %>% select(Interaction.Type) %>% unlist()
+	other <- hcmsi.sources %>% filter(SARTable=="other") %>% select(Interaction.Type) %>% unlist()
+	rm(hcmsi.sources)
 	
 # Function to tabulate MSI by source and species, format for Markdown
 	Table_MSI <- function(df) {    
@@ -68,7 +66,8 @@
 	
 # How many records were associated with observer programs or monitored activities?
 	systematic.1 = c(grep("DETERRENT|OBSERVER PROGRAM|CODEND", x$Comments))
-	systematic.2 = c(grep("HAWAII LONGLINE|CA SWORDFISH|CA HALIBUT|PROCESSOR|CATCH SHARES|CATCH MONITOR", x$Interaction.Type))
+	# the following may include electronic monitoring, observation of catch at processing facility 
+	systematic.2 = c(grep("HAWAII LONGLINE|CA SWORDFISH|CA HALIBUT|PROCESSOR|CATCH SHARES|CATCH MONITOR|OPEN ACCESS|LIMITED ENTRY|ROCKFISH EM|CATCHER PROCESSOR|MACKEREL TRAWL|FLATFISH TRAWL|AT-SEA HAKE", x$Interaction.Type))
   systematic.3 = c(grep("RESEARCH", x$Interaction.Type))
   systematic.4 = c(grep("AUTHORIZED", x$Interaction.Type))
 	systematic.obs = unique(c(systematic.1, systematic.2, systematic.3, systematic.4))
@@ -81,12 +80,13 @@
   dead = x[mortality,]
   rm(mortality)
 	
-  # check initial vs final assessments (*** MOVE TO A SCRIPT FOR CHECKING MOST RECENT YEAR OR FIVE YEARS***)
-	PINNIPEDS.DETERMINED = alive %>% filter(Species %in% pinn.spp)
-	table(PINNIPEDS.DETERMINED$Initial.Injury.Assessment, PINNIPEDS.DETERMINED$Final.Injury.Assessment)
+  # SI determinations
+  PINNIPEDS.DETERMINED = alive %>% filter(Species %in% pinn.spp)
 	SMALL.CET.DETERMINED = alive %>% filter(Species %in% sm.cet.spp)
-	table(SMALL.CET.DETERMINED$Initial.Injury.Assessment, SMALL.CET.DETERMINED$Final.Injury.Assessment)
 	WHALES.DETERMINED = alive %>% filter(Species %in% lg.whale.spp)
+	## check initial vs final assessments (*** MOVE TO A SCRIPT FOR CHECKING MOST RECENT YEAR OR FIVE YEARS?***)
+	table(PINNIPEDS.DETERMINED$Initial.Injury.Assessment, PINNIPEDS.DETERMINED$Final.Injury.Assessment)
+	table(SMALL.CET.DETERMINED$Initial.Injury.Assessment, SMALL.CET.DETERMINED$Final.Injury.Assessment)
 	table(WHALES.DETERMINED$Initial.Injury.Assessment, WHALES.DETERMINED$Final.Injury.Assessment)
 	
 # How many large whale records involved an attempt to free the whale from gear?
@@ -123,17 +123,16 @@
 	small.cet.records <- x %>% filter(Species %in% sm.cet.spp)
 	small.cet.causes = as.data.frame(table(small.cet.records$Interaction.Type))
 	small.cet.causes = small.cet.causes[order(small.cet.causes[,2], decreasing=T, na.last=F), ]
+	# different subset from list of 'systematic' observation created above
 	systematic.small.cet.records <- length(grep("SCIENTIFIC RESEARCH", small.cet.records$Interaction.Type, ignore.case=TRUE)) +
 	                                 length(grep("OBSERVER PROGRAM", small.cet.records$Comments, ignore.case=TRUE))
-	small.cet.gillnet.trawl.unid.fishery <- length(grep("GILLNET|TRAWL|RESEARCH|UNIDENTIFIED FISHERY INTERACTION", 
-	                                                    small.cet.records$Interaction.Type, ignore.case=TRUE))
-	
+
 #  Rehab mentioned
      rehab = grep("REHAB", x$Comments)
      rehab = x[rehab,]
      table(rehab$Interaction.Type, rehab$SI.Criteria.Supporting.Assessment)
 
-# extract 5-year records for each species ###*** WHICH OF THESE USED IN Report.Rmd? MN, ...?
+# extract 5-year records for each species
 	## pinnipeds
 	AT <- x[x$Species=="GUADALUPE FUR SEAL",]
 	CSL <- x[x$Species=="CALIFORNIA SEA LION",]
