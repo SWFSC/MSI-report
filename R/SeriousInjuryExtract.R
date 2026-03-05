@@ -2,6 +2,7 @@
 # !! Note this script produces several in-console tables and CSVs that should be checked by eye.
 # Adapted from Jim Carretta's 02-25-2025 script
 # Input file renamed "HCMSI_Records_SWFSC_Main.xlsx" in Sep 2025
+# IMPORTANT: Make sure records in Excel file are sorted by date first, then alphabetical by species
 
 # Load required packages
   library(ggplot2)
@@ -13,16 +14,18 @@
 	
 # Set local paths
 	## set local working directory (make this different from GitHub repo)
-	setwd("C:/Users/alex.curtis/Data/MSI")
-	## set local path to main data file
-	path.dat <- "C://Users/alex.curtis/Data/Github/MSI-data/data/"
+	#setwd("C:/Users/alex.curtis/Data/MSI")
+	setwd("C:/jeff/NOAA/MSIreport")
+  ## set local path to main data file
+	#path.dat <- "C://Users/alex.curtis/Data/Github/MSI-data/data/"
+	path.dat <- "C:/jeff/github/MSI-data/data/"
 	
 # Import data
 	data = read_excel(paste0(path.dat, "HCMSI_Records_SWFSC_Main.xlsx"))
 	
 	## Set years to include in annual MSI report, subset data
-	min.year = 2019
-	max.year = 2023
+	min.year = 2020
+	max.year = 2024
 	inc.yrs = min.year:max.year
 	x <- data %>% filter(Year %in% inc.yrs)
 	
@@ -34,7 +37,8 @@
 	rm(spgroups)
 	
 	## get interaction type classifications (commercial or other)
-	hcmsi.sources <- read.csv(paste0(path.dat, "lt_IntrxnTypes.csv"))
+	#hcmsi.sources <- read.csv(paste0(path.dat, "lt_IntrxnTypes.csv"))
+	hcmsi.sources <- rbind(read.csv(paste0(path.dat, "lt_LOF.csv")), read.csv(paste0(path.dat, "lt_LOF_JVC_extras.csv")))
 	commercial <- hcmsi.sources %>% filter(SARTable=="commercial") %>% select(Interaction.Type) %>% unlist()
 	other <- hcmsi.sources %>% filter(SARTable=="other") %>% select(Interaction.Type) %>% unlist()
 	rm(hcmsi.sources)
@@ -113,7 +117,7 @@
 	whale.records <- x %>% filter(Species %in% lg.whale.spp)
 	whales.dead <- whale.records[whale.records$Final.Injury.Assessment=="DEAD",]
 	# # write CSV to check by eye
-	# write.csv(whale.records, "X-yr Large Whales.csv", fileEncoding="UTF-8")
+	#write.csv(whale.records, "X-yr Large Whales.csv", fileEncoding="UTF-8")
 	
 # small cetaceans 
 	small.cet.records <- x %>% filter(Species %in% sm.cet.spp)
