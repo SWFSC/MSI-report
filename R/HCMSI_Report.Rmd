@@ -139,7 +139,7 @@ Many of the records in this report were provided by those who devote their time 
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 
-Species <- unique(x$Species)  
+Species <- sort(unique(x$Species))
 Cases <- as.numeric(table(x$Species)) 
 MSI.Total <- tapply(x$MSI.Value, x$Species,  sum) 
 
