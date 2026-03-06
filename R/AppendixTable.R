@@ -30,6 +30,6 @@ doc <- body_add_flextable(doc, value = A1, align = "left")
 print(doc, target = "Appendix_1.docx")
 
 # Once in Word:
- # - Layout/autofit/autofit to contents (change to Landscape)
+ # - Layout/autofit/autofit to contents (see "MSI report steps.txt" in GitHub repo "MSI-report")
  # - Add Table header from placeholder page in HCM_SI_Report.docx
 # Note carriage returns in Narrative can mess up Word table formatting
