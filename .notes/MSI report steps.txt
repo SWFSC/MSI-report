@@ -5,6 +5,8 @@ MSI report steps
 * data directory
 * year range
 
+(1b - optional) run chunks of SeriousInjuryExtract_misc.r for project-specific purposes (such as generating species-specific summaries of MSI x interaction-type)
+
 (2) run AppendixTable.R (ensure working directory or path is where Rdata file was created by previous script)
 
 (3) HCM_SI_Report.Rmd
