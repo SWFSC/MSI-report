@@ -13,11 +13,9 @@
 	library(magrittr)
 	
 # Set local paths
-	## set local working directory (make this different from GitHub repo)
-	#setwd("C:/Users/alex.curtis/Data/MSI")
-	setwd("C:/jeff/NOAA/MSIreport")
-  ## set local path to main data file
-	#path.dat <- "C://Users/alex.curtis/Data/Github/MSI-data/data/"
+	## set local working directory for working-file outputs (make this different from local GitHub repo)
+	setwd("C:/jeff/NOAA/MMPA_Implementation//MSIreport/_2020_2024")
+  ## set local path for reading in data files
 	path.dat <- "C:/jeff/github/MSI-data/data/"
 	
 # Import data
