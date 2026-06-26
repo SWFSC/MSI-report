@@ -6,7 +6,9 @@ toc: yes
 ---
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, hide.results=TRUE}
-source("C:/jeff/github/MSI-report/R/SeriousInjuryExtract.R") # note to set correct file path here
+# set local file path where SeriousInjuryExtract.R lives
+# note this is where report will initially be saved
+source("C:/jeff/github/MSI-report/R/SeriousInjuryExtract.R") 
 
 # load("SeriousInjuryReport.RData")
 library(ggplot2)
