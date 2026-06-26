@@ -7,9 +7,10 @@ MSI report steps
 
 (1b - optional) run chunks of SeriousInjuryExtract_misc.r for project-specific purposes (such as generating species-specific summaries of MSI x interaction-type)
 
-(2) run AppendixTable.R (ensure working directory or path is where Rdata file was created by previous script)
+(2) run AppendixTable.R (specify file path for where the sourced file exists, e.g., C:/jeff/github/MSI-report/R/SeriousInjuryExtract.R) and ensure working directory or path is where Rdata file was created by previous script)
 
 (3) HCM_SI_Report.Rmd
+* Word file is saved in same folder as the sourced file: "SeriousInjuryExtract.R".  This is ultimately moved to NOAA library (and then removed from this GitHub folder) 
 * check years are correct
 * update Data Availability link for 5-year data
 * knit
