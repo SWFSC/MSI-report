@@ -2,7 +2,7 @@
 # !! Note this script produces several in-console tables and CSVs that should be checked by eye.
 # Adapted from Jim Carretta's 02-25-2025 script
 # Input file renamed "HCMSI_Records_SWFSC_Main.xlsx" in Sep 2025
-# IMPORTANT: Make sure records in Excel file are sorted by date first, then alphabetical by species
+# IMPORTANT: Make sure records in Excel file are sorted by year first, then alphabetical by species
 
 # Load required packages
   library(ggplot2)
@@ -167,11 +167,11 @@
   save.image("SeriousInjuryReport.RData")
   ## write 5-year csv output file with added codes for Github upload
   ## (move manually to MSI-report/data directory after checking)
-  write.csv(x, paste(min.year, "_", max.year, "_5yr_MSI.csv", sep=""), row.names=F, fileEncoding="UTF-8")
+  write.csv(x %>% select(-Lat.Dec, -Lon.Dec, -LatRange.Dec, -CRC.ID, -Other.Identifiers, -Notes), paste(min.year, "_", max.year, "_5yr_MSI.csv", sep=""), row.names=F, fileEncoding="UTF-8")
   ## write all data through most-recently published report for Github upload 
   ## (move manually to MSI-report/data directory after checking)
   MSI.all.data <- data[data$Year<=max.year,]
-  write.csv(MSI.all.data, paste("HCMSI_Records_SWFSC_", min(data$Year), "_",
+  write.csv(MSI.all.data %>% select(-Lat.Dec, -Lon.Dec, -LatRange.Dec, -CRC.ID, -Other.Identifiers, -Notes), paste("HCMSI_Records_SWFSC_", min(data$Year), "_",
                                 "LatestPublishedYear",
                                 ".csv", sep=""), row.names=F, fileEncoding="UTF-8")
 
